@@ -1,8 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": "node_modules",
-    "paths": {
-      "@/*": ["../src/*"]
-    }
+    "baseUrl": "src"
   }
 }
