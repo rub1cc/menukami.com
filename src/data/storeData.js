@@ -1,9 +1,9 @@
 const storeData = {
   id: 'lUs8Askf',
-  name: 'Sushi Hiro',
-  banner:
-    'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.WIwSJZxRsIMViBwR2kYP7AAAAA%26pid%3DApi&f=1',
-  phone: '+62812345678',
+  name: 'Healty Bites',
+  banner: 'https://chatfood.imgix.net/static/healthy-bites/assets/cover-upload-1601998162.jpeg',
+  location: 'Jl. Bakti 14',
+  phone: '6287782345627',
   link: [
     {
       name: 'twitter',
@@ -20,47 +20,63 @@ const storeData = {
   ],
   menus: [
     {
-      category: 'Appetizers',
+      category: 'Salads',
       items: [
         {
-          name: 'Edamame',
-          description: 'Steamed young soybeans',
-          image: 'https://www.sushihirolv.com/wp-content/uploads/2019/11/edamame-380-x-214.jpg',
-          price: 25000,
+          id: 1,
+          name: 'Quinoa Tabbouleh Salad',
+          description: 'Quinoa, tomato, parsley, spring onion and pomegranate seeds',
+          image:
+            'https://chatfood.imgix.net/static/healthy-bites/menu/quinoa-tabbouleh-salad.jpeg?fm=jpeg&h=300&w=300&q=90&fit=crop&crop=center',
+          price: 250000,
+          discountedPrice: 100000,
+          discount: 40,
         },
         {
-          name: 'Edamame',
-          description: 'Steamed young soybeans',
-          image: 'https://www.sushihirolv.com/wp-content/uploads/2019/11/edamame-380-x-214.jpg',
-          price: 25000,
+          id: 2,
+          name: 'Lentil Salad',
+          description:
+            'Lentils, cherry tomato, grilled zucchini, mint, feta cheese, roasted capsicums, raisins and mixed lettuce',
+          image:
+            'https://chatfood.imgix.net/static/healthy-bites/menu/lentil-salad.jpeg?fm=jpeg&h=300&w=300&q=90&fit=crop&crop=center',
+          price: 12500,
         },
         {
-          name: 'Edamame',
-          description: 'Steamed young soybeans',
-          image: 'https://www.sushihirolv.com/wp-content/uploads/2019/11/edamame-380-x-214.jpg',
-          price: 25000,
+          id: 3,
+          name: 'Tuna Salad',
+          description: 'Preserved tuna, iceberg lettuce, avocado, cherry tomatoes and cucumber',
+          image:
+            'https://chatfood.imgix.net/static/healthy-bites/menu/tuna-salad.jpg?fm=jpeg&h=300&w=300&q=90&fit=crop&crop=center',
+          price: 1542,
         },
       ],
     },
     {
-      category: 'Appetizers',
+      category: 'Sandwiches & Wraps',
       items: [
         {
-          name: 'Edamame',
-          description: 'Steamed young soybeans',
-          image: 'https://www.sushihirolv.com/wp-content/uploads/2019/11/edamame-380-x-214.jpg',
+          id: 4,
+          name: 'Chicken & Avocado Burger',
+          description: 'Grilled chicken, avocado, tomato, iceberg lettuce and mayonnaise',
+          image:
+            'https://chatfood.imgix.net/static/healthy-bites/menu/chicken-avocado-burger.jpg?fm=jpeg&h=300&w=300&q=90&fit=crop&crop=center',
           price: 25000,
         },
         {
-          name: 'Edamame',
-          description: 'Steamed young soybeans',
-          image: 'https://www.sushihirolv.com/wp-content/uploads/2019/11/edamame-380-x-214.jpg',
+          id: 5,
+          name: 'Tikka Burger',
+          description:
+            'Tikka marinated grilled chicken, gherkins, sundried tomatoes, iceberg lettuce, red onion and aioli',
+          image:
+            'https://chatfood.imgix.net/static/healthy-bites/menu/tikka-burger.jpg?fm=jpeg&h=300&w=300&q=90&fit=crop&crop=center',
           price: 25000,
         },
         {
-          name: 'Edamame',
-          description: 'Steamed young soybeans',
-          image: 'https://www.sushihirolv.com/wp-content/uploads/2019/11/edamame-380-x-214.jpg',
+          id: 6,
+          name: 'Cheese Burger',
+          description: 'A classic, topped with grilled onions and tomato sauce.',
+          image:
+            'https://chatfood.imgix.net/static/healthy-bites/menu/cheese-burger_1603268008.jpg?fm=jpeg&h=300&w=300&q=90&fit=crop&crop=center',
           price: 25000,
         },
       ],
