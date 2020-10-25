@@ -4,8 +4,10 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="id">
-        <Head />
-        <body className="antialiase max-w-md mx-auto bg-gray-200">
+        <Head>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <body className="antialiase bg-gray-200">
           <Main />
           <NextScript />
         </body>

@@ -8,9 +8,9 @@ export default function OrderButton() {
   const totalPrice = cart.reduce((prev, next) => prev + next.subTotal, 0) || 0
 
   return cart?.length > 0 ? (
-    <Link href="/review-order">
+    <Link href="/menu/review-order">
       <button className="fixed bottom-0 inset-x-0 mb-4 max-w-md mx-auto">
-        <div className="flex rounded-lg text-white text-center bg-blue-500 p-4 justify-between mx-4">
+        <div className="flex rounded-lg text-white text-center bg-orange-500 p-4 justify-between mx-4">
           <p className="font-bold">{totalItem} item</p>
           <span className="flex space-x-1 items-center justify-center">
             <p className="font-bold">{formatToCurrency(totalPrice)}</p>

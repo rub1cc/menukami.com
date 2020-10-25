@@ -1,9 +1,9 @@
 import * as classnames from 'classnames'
 import { useCart } from 'context/cart-context'
-import formatToCurrency from 'utils/formatToCurrency'
+import Price from './Price'
 
 export default function ItemDetail({ data, isShow, handleDismiss }) {
-  const { id, image, name, description, price, discountedPrice, discount } = data
+  const { id, image, name, description } = data
   const { cart, addToCart, increment, decrement, updateNote } = useCart()
   const itemInCart = cart.filter((item) => item.id === id)[0]
   const count = itemInCart ? itemInCart.qty : 1
@@ -52,21 +52,7 @@ export default function ItemDetail({ data, isShow, handleDismiss }) {
                 <img src={image} alt={name} className="w-full h-64 object-cover" />
                 <div className="py-4 px-4 bg-white">
                   <p className="text-xl font-bold">{name}</p>
-                  {discountedPrice ? (
-                    <span className="flex space-x-2 mt-2 items-center">
-                      <p className="text-base">
-                        {data.currency} {formatToCurrency(discountedPrice)}
-                      </p>
-                      <p className="text-sm text-gray-500 line-through">
-                        {data.currency} {formatToCurrency(price)}
-                      </p>
-                      <p className="text-sm text-red-500">-{discount}%</p>
-                    </span>
-                  ) : (
-                    <p className="text-base mt-2">
-                      {data.currency} {formatToCurrency(price)}
-                    </p>
-                  )}
+                  <Price data={data} />
 
                   <p className="font-light text-gray-600 mt-2">{description}</p>
                 </div>
@@ -89,7 +75,7 @@ export default function ItemDetail({ data, isShow, handleDismiss }) {
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
-                        className={classnames(['w-8 h-8 border border-gray-700 rounded-full p-1'])}
+                        className="w-8 h-8 border border-gray-400 rounded-full p-1 text-orange-500 hover:border-gray-600 transition duration-300 cursor-pointer"
                         onClick={() => decrement(id)}
                       >
                         <path
@@ -105,7 +91,7 @@ export default function ItemDetail({ data, isShow, handleDismiss }) {
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
-                        className="w-8 h-8 border border-gray-700 rounded-full p-1"
+                        className="w-8 h-8 border border-gray-400 rounded-full p-1 text-orange-500 hover:border-gray-600 transition duration-300 cursor-pointer"
                         onClick={() => increment(id)}
                       >
                         <path
@@ -118,7 +104,7 @@ export default function ItemDetail({ data, isShow, handleDismiss }) {
                     </div>
                   ) : (
                     <button
-                      className="px-4 py-2 bg-blue-500 rounded-md text-white w-full"
+                      className="px-4 py-2 bg-orange-500 rounded-md text-white w-full"
                       onClick={handleAddItem}
                     >
                       <span>Tambah</span>
