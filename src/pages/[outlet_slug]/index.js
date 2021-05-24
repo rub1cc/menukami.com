@@ -10,6 +10,7 @@ import DefaultErrorPage from 'next/error'
 import { withRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
+import Head from 'next/head'
 
 function useMenus(sheet_id) {
   const [menus, setMenus] = useState([])
@@ -61,6 +62,32 @@ function Menu({ router }) {
 
   return (
     <MobileLayout>
+      <Head>
+        <title>{data.name} - Menukami</title>
+        <meta name="title" content={`${data.name} - Menukami`} />
+        <meta
+          name="description"
+          content="Platform menu digital, mudah untuk disebarkan dan pelanggan dapat melakukan pesanan langsung yang akan dikirim via Whatsapp. Buat menu kamu sekarang!"
+        />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://menukami.com/${data.slug}`} />
+        <meta property="og:title" content={`${data.name} - Menukami`} />
+        <meta
+          property="og:description"
+          content="Platform menu digital, mudah untuk disebarkan dan pelanggan dapat melakukan pesanan langsung yang akan dikirim via Whatsapp. Buat menu kamu sekarang!"
+        />
+        <meta property="og:image" content={data.cover} />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={`https://menukami.com/${data.slug}`} />
+        <meta property="twitter:title" content={`${data.name} - Menukami`} />
+        <meta
+          property="twitter:description"
+          content="Platform menu digital, mudah untuk disebarkan dan pelanggan dapat melakukan pesanan langsung yang akan dikirim via Whatsapp. Buat menu kamu sekarang!"
+        />
+        <meta property="twitter:image" content={data.cover} />
+      </Head>
       <main className="flex flex-col w-full h-screen">
         <StoreDetail data={data} />
 
