@@ -1,20 +1,20 @@
-import { Auth0Provider } from '@auth0/auth0-react'
+import { UserProvider } from '@auth0/nextjs-auth0'
 import { CartProvider } from 'context/cart-context'
+import { QueryClient, QueryClientProvider } from 'react-query'
+const queryClient = new QueryClient()
+
 import '../styles/tailwind.css'
+import '../styles/custom.css'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Auth0Provider
-      domain={process.env.NEXT_PUBLIC_AUTH0_DOMAIN}
-      clientId={process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID}
-      redirectUri={'http://localhost:3000/admin'}
-      useRefreshTokens={true}
-      cacheLocation="localstorage"
-    >
-      <CartProvider>
-        <Component {...pageProps} />
-      </CartProvider>
-    </Auth0Provider>
+    <QueryClientProvider client={queryClient}>
+      <UserProvider>
+        <CartProvider>
+          <Component {...pageProps} />
+        </CartProvider>
+      </UserProvider>
+    </QueryClientProvider>
   )
 }
 

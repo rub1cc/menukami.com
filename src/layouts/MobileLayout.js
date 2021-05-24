@@ -1,3 +1,3 @@
-export default function MobileLayout({ children }) {
-  return <div className=" max-w-md mx-auto ">{children}</div>
+export default function MobileLayout({ children, className }) {
+  return <div className={`max-w-md mx-auto w-full relative ${className}`}>{children}</div>
 }

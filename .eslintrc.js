@@ -26,6 +26,7 @@ module.exports = {
   rules: {
     'no-unused-expressions': 'off',
     'react/react-in-jsx-scope': 'off',
+    'react/no-unescaped-entities': 'off',
     'react/prop-types': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }], //should add ".ts" if typescript project
     'prettier/prettier': ['error', {}, { usePrettierrc: true }], // Use our .prettierrc file as source

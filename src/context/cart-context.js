@@ -9,7 +9,7 @@ function CartProvider(props) {
   const addToCart = useCallback(
     (item) => {
       item.qty = 1
-      item.subTotal = (item.discountedPrice ?? item.price) * item.qty
+      item.subTotal = (item.sale ?? item.price) * item.qty
       setCart([...cart, item])
     },
     [setCart, cart]
@@ -22,7 +22,7 @@ function CartProvider(props) {
       const index = tempCart.indexOf(selectedItem)
       const item = tempCart[index]
       item.qty += 1
-      item.subTotal = (item.discountedPrice ?? item.price) * item.qty
+      item.subTotal = (item.sale ?? item.price) * item.qty
       setCart([...tempCart])
     },
     [setCart, cart]
@@ -37,11 +37,11 @@ function CartProvider(props) {
       if (item.qty == 1) {
         item.note = ''
         setCart(cart.filter((item) => item.id !== id))
-        return
+      } else {
+        item.qty -= 1
+        item.subTotal = (item.sale ?? item.price) * item.qty
+        setCart([...tempCart])
       }
-      item.qty -= 1
-      item.subTotal = (item.discountedPrice ?? item.price) * item.qty
-      setCart([...tempCart])
     },
     [setCart, cart]
   )

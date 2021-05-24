@@ -9,14 +9,14 @@ export default function NoteForm({ data, isShow, handleDismiss }) {
 
   const [note, setNote] = useState(itemInCart.note)
 
-  const dimiss = () => {
+  const dismiss = () => {
     setNote(itemInCart.note)
     handleDismiss()
   }
 
   const saveNote = () => {
     updateNote(id, note)
-    dimiss()
+    dismiss()
   }
 
   return isShow ? (
@@ -26,7 +26,10 @@ export default function NoteForm({ data, isShow, handleDismiss }) {
       ])}
     >
       <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-        <button className="fixed inset-0 transition-opacity" onClick={dimiss}>
+        <button
+          className="fixed inset-0 transition-opacity w-full h-full focus:outline-none"
+          onClick={dismiss}
+        >
           <div className="absolute inset-0 bg-gray-800 opacity-75"></div>
         </button>
         <span className="hidden sm:inline-block sm:align-middle sm:h-screen"></span>&#8203;
@@ -41,18 +44,17 @@ export default function NoteForm({ data, isShow, handleDismiss }) {
               <div className="w-full bg-gray-100 space-y-1">
                 {itemInCart ? (
                   <div className="py-4 px-4 bg-white">
-                    <p className="text-base font-semibold">Catatan untuk pesanan</p>
                     <input
                       value={note}
-                      placeholder="Contoh: Extra pedas ya!"
-                      className="mt-2 w-full bg-gray-100 px-4 py-3 rounded-lg focus:outline-none"
+                      placeholder="Beri catatan untuk penjual"
+                      className="mt-2 w-full px-4 py-3 rounded-lg focus:outline-none border"
                       onChange={(e) => setNote(e.target.value)}
                     ></input>
                   </div>
                 ) : null}
                 <div className="flex p-4 justify-center items-center bg-white">
                   <button
-                    className="px-4 py-2 bg-orange-500 rounded-md text-white w-full"
+                    className="px-4 py-2 bg-blue-500 rounded-md text-white w-full focus:outline-none"
                     onClick={saveNote}
                   >
                     <span>Simpan</span>

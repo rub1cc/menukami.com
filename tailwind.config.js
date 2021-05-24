@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   purge: [],
   theme: {
@@ -5,6 +7,9 @@ module.exports = {
       lines: {
         2: '2',
       },
+    },
+    fontFamily: {
+      sans: ['Karla', ...defaultTheme.fontFamily.sans],
     },
     extend: {},
   },
