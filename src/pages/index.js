@@ -46,9 +46,9 @@ function Hero() {
       <DesktopLayout>
         <div className="flex py-12 space-x-32">
           <div className="text-center">
-            <div className="text-4xl md:text-5xl">Terima Pesanan Langsung ke Toko Anda</div>
+            <div className="text-4xl md:text-5xl">Kembangkan Bisnis Anda Tanpa Komisi</div>
             <div className="text-xl md:text-2xl">
-              Buat menu & terima pesanan bebas komisi via Whatsapp
+              Buat menu & terima pesanan langsung via Whatsapp
             </div>
             <div>
               <button
