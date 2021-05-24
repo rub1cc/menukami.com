@@ -58,10 +58,10 @@ function Hero() {
                 BUAT SEKARANG - GRATIS
               </button>
             </div>
-            <div className="w-full max-w-xl mx-auto">
+            <div className="w-full max-w-2xl mx-auto">
               <div>
-                <video key="https://i.imgur.com/Zy4SUXQ.mp4" playsInline autoPlay muted loop>
-                  <source src="https://i.imgur.com/Zy4SUXQ.mp4" />
+                <video key="https://i.imgur.com/7rGukPL.mp4" playsInline autoPlay muted loop>
+                  <source src="https://i.imgur.com/7rGukPL.mp4" />
                 </video>
               </div>
             </div>
