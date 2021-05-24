@@ -3,9 +3,9 @@ export default function Footer() {
     <footer className="px-4 py-2 mt-2 pb-12">
       <p className="text-sm font-light text-center">
         Made with{' '}
-        <button href="" className="text-blue-500 underline focus:outline-none">
+        <a href="https://menukami.com" className="text-blue-500 underline focus:outline-none">
           menukami.com
-        </button>
+        </a>
       </p>
     </footer>
   )
