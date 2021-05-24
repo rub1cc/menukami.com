@@ -46,7 +46,7 @@ function Hero() {
       <DesktopLayout>
         <div className="flex py-12 space-x-32">
           <div className="text-center">
-            <div className="text-4xl md:text-5xl">Kembangkan Bisnis Anda Tanpa Komisi</div>
+            <div className="text-4xl md:text-5xl">Kembangkan Bisnis Kamu Tanpa Komisi</div>
             <div className="text-xl md:text-2xl">
               Buat menu & terima pesanan langsung via Whatsapp
             </div>
@@ -76,7 +76,7 @@ function Footer() {
   return (
     <div className="py-6">
       <DesktopLayout>
-        <div className="">
+        <div className="text-center">
           <small>
             &copy; 2020 <span className="font-bold">menukami.com</span>
           </small>
@@ -90,7 +90,36 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Kembangkan bisnis Anda tanpa komisi | MenuKami</title>
+        <title>Menukami: Buat menu digital & terima pesanan via Whatsapp</title>
+        <meta name="title" content="Menukami: Buat menu digital & terima pesanan via Whatsapp" />
+        <meta
+          name="description"
+          content="Platform menu digital, mudah untuk disebarkan dan pelanggan dapat melakukan pesanan langsung yang akan dikirim via Whatsapp. Buat menu kamu sekarang!"
+        />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://menukami.com/" />
+        <meta
+          property="og:title"
+          content="Menukami: Buat menu digital & terima pesanan via Whatsapp"
+        />
+        <meta
+          property="og:description"
+          content="Platform menu digital, mudah untuk disebarkan dan pelanggan dapat melakukan pesanan langsung yang akan dikirim via Whatsapp. Buat menu kamu sekarang!"
+        />
+        <meta property="og:image" content="https://i.imgur.com/6eYbLz2.png" />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://menukami.com/" />
+        <meta
+          property="twitter:title"
+          content="Menukami: Buat menu digital & terima pesanan via Whatsapp"
+        />
+        <meta
+          property="twitter:description"
+          content="Platform menu digital, mudah untuk disebarkan dan pelanggan dapat melakukan pesanan langsung yang akan dikirim via Whatsapp. Buat menu kamu sekarang!"
+        />
+        <meta property="twitter:image" content="https://i.imgur.com/6eYbLz2.png" />
       </Head>
       <div className="min-h-screen bg-white px-4 flex flex-col justify-between">
         <Header />
