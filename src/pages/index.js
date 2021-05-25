@@ -78,6 +78,13 @@ function Footer() {
       <DesktopLayout>
         <div className="text-center">
           <small>
+            <a href="/privacy" className="underline">
+              Kebijakan Privasi
+            </a>
+          </small>
+        </div>
+        <div className="text-center">
+          <small>
             &copy; 2020 <span className="font-bold">menukami.com</span>
           </small>
         </div>

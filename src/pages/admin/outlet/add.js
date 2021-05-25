@@ -285,7 +285,7 @@ function App() {
                                 >
                                   <span>Google Sheet ID </span>
                                   <a
-                                    href="https://docs.google.com/spreadsheets/d/17he1PUz8ivSLFPlvxw4TFhv8XQmGRIAgwnAMFfGDbpg/copy"
+                                    href="https://docs.google.com/spreadsheets/d/17he1PUz8ivSLFPlvxw4TFhv8XQmGRIAgwnAMFfGDbpg/copy#gid=0"
                                     className="text-sm underline"
                                     target="_blank"
                                     rel="noopener noreferrer"
