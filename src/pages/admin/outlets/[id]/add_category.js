@@ -21,7 +21,7 @@ function App() {
 
   const mutation = useMutation(
     (data) =>
-      fetch(`/api/admin/outlets/${router.query.id}/category`, {
+      fetch(`/api/admin/outlets/${router.query.id}/categories`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
