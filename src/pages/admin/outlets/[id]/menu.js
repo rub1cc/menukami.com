@@ -54,7 +54,7 @@ const Product = ({ item, index }) => {
           <span className="font-normal text-left">{item?.name}</span>
           <Price data={item} />
           <button
-            className="text-blue-500"
+            className="text-blue-500 text-left"
             onClick={() => router.push(`/admin/outlets/${id}/menu/${item.id}`)}
           >
             Edit menu
@@ -78,7 +78,7 @@ const CategoryItems = ({ id }) => {
   ) : (
     <button
       className="flex space-x-2 justify-center items-center border-2 border-dashed bg-gray-100 p-4 rounded border-gray-300 hover:border-gray-500 text-gray-500 transition duration-300"
-      onClick={() => router.push(`/admin/outlets/${id}/add_category`)}
+      onClick={() => router.push(`/admin/outlets/${id}/add_menu`)}
     >
       <p>
         Kategori ini belum ada menu-nya, <span className="text-gray-900">yuk buat sekarang</span>
@@ -129,7 +129,7 @@ const Category = ({ item, index }) => {
             <div className="flex flex-col text-left">
               <span className="font-normal">{item?.name}</span>
               <button
-                className="text-blue-500"
+                className="text-blue-500 text-left"
                 onClick={() => router.push('/admin/category/' + item.id)}
               >
                 Edit kategori
