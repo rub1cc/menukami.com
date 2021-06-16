@@ -5,7 +5,7 @@ import React from 'react'
 function LoginButton() {
   return (
     <div className="flex space-x-4 items-center">
-      <Link href="/admin">
+      <Link href="/zona_gamers">
         <button className="focus:outline-none">Demo</button>
       </Link>
       <Link href="/admin">
