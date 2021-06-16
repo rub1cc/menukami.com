@@ -18,11 +18,7 @@ function ReviewOrder() {
   // const totalPrice = totalCartPrice + deliveryFee
   const handleOrderButton = () =>
     window.open(
-      prepareWAMessage(
-        cart,
-        sessionStorage.getItem('store_phone').replace('+', ''),
-        deliveryAddress
-      )
+      prepareWAMessage(cart, JSON.parse(sessionStorage.getItem('menukami_store')), deliveryAddress)
     )
 
   function CartItem() {
@@ -42,7 +38,7 @@ function ReviewOrder() {
                       className="text-sm text-blue-500 font-light inline focus:outline-none"
                       onClick={() => setShowItemDetail(true)}
                     >
-                      Ubah
+                      Edit
                     </button>
                   </span>
                 ) : (

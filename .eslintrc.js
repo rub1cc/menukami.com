@@ -27,6 +27,10 @@ module.exports = {
     'no-unused-expressions': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/no-unescaped-entities': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/interactive-supports-focus': 'off',
+    'react/jsx-no-duplicate-props': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
     'react/prop-types': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }], //should add ".ts" if typescript project
     'prettier/prettier': ['error', {}, { usePrettierrc: true }], // Use our .prettierrc file as source

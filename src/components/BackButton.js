@@ -3,9 +3,10 @@ import { useRouter } from 'next/router'
 export default function BackButton() {
   const router = useRouter()
   return (
-    <button
+    <div
       className="bg-gray-100 rounded-full p-1 border border-gray-200 hover:border-gray-500 transition duration-300 focus:outline-none"
       onClick={() => router.back()}
+      role="button"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -16,6 +17,6 @@ export default function BackButton() {
       >
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
       </svg>
-    </button>
+    </div>
   )
 }

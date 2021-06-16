@@ -17,7 +17,17 @@ const validations = {
     cover: yup.string().url('URL gambar tidak valid').required('Wajib diisi'),
     phone: yup.string().matches(phoneRegExp, 'Nomor tidak valid').required('Wajib diisi'),
     payment: yup.string().required('Wajib diisi'),
-    sheet_id: yup.string().required('Wajib diisi'),
+  }),
+  menuSchema: yup.object().shape({
+    name: yup.string().required('Wajib diisi'),
+  }),
+  productSchema: yup.object().shape({
+    category_id: yup.object({ value: yup.string(), label: yup.string() }).required('Wajib diisi'),
+    name: yup.string().min(3, 'Minimun 3 karakter').required('Wajib diisi'),
+    descritpion: yup.string(),
+    image: yup.string().url('URL gambar tidak valid').required('Wajib diisi'),
+    price: yup.number('Harus berupa angka').required('Wajib diisi'),
+    sale_price: yup.number('Harus berupa angka').required('Wajib diisi'),
   }),
 }
 

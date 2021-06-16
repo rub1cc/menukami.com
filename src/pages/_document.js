@@ -18,7 +18,7 @@ export default class MyDocument extends Document {
             }}
           />
         </Head>
-        <body className="antialiase bg-gray-200">
+        <body className="antialiase bg-gray-200 font-thin">
           <Main />
           <NextScript />
         </body>

@@ -2,11 +2,11 @@ import formatToCurrency from 'utils/formatToCurrency'
 import * as classnames from 'classnames'
 
 export default function Price({ data, className }) {
-  const { price, sale } = data
+  const { price, sale_price } = data
 
-  return sale ? (
+  return sale_price ? (
     <span className={classnames(['flex space-x-2 items-center', className])}>
-      <p>{formatToCurrency(sale)}</p>
+      <p>{formatToCurrency(sale_price)}</p>
       <small className="text-gray-500 line-through">{formatToCurrency(price)}</small>
     </span>
   ) : (

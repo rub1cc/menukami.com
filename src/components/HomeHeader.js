@@ -4,9 +4,14 @@ import React from 'react'
 
 function LoginButton() {
   return (
-    <Link href="/admin">
-      <button className="focus:outline-none">Login</button>
-    </Link>
+    <div className="flex space-x-4 items-center">
+      <Link href="/admin">
+        <button className="focus:outline-none">Demo</button>
+      </Link>
+      <Link href="/admin">
+        <button className="focus:outline-none">Login</button>
+      </Link>
+    </div>
   )
 }
 

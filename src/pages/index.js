@@ -11,19 +11,38 @@ function Hero() {
       <DesktopLayout>
         <div className="flex py-12 space-x-32">
           <div className="text-center">
-            <div className="text-4xl md:text-5xl">Kembangkan Bisnis Kamu Tanpa Komisi</div>
-            <div className="text-xl md:text-2xl">
+            <div className="text-3xl md:text-6xl leading-tight">
+              Kembangkan Bisnis Kamu Tanpa Komisi
+            </div>
+            <div className="text-sm md:text-xl text-gray-600 mt-4">
               Buat menu & terima pesanan langsung via Whatsapp
             </div>
-            <div>
-              <button
-                className="mt-8 bg-gray-900 px-8 py-4 rounded text-white font-semibold tracking-wider"
-                onClick={() => router.push('/admin')}
-              >
-                BUAT SEKARANG - GRATIS
-              </button>
+            <div className="flex items-start justify-center space-x-4">
+              <div>
+                <button
+                  className="flex items-center space-x-4 mt-8 bg-gray-900 px-6 py-3 rounded-full text-white tracking-wider text-sm md:text-xl"
+                  onClick={() => router.push('/admin')}
+                >
+                  <span>Buat Sekarang</span>
+                  <span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </span>
+                </button>
+                <span className="mt-2 block text-xs md:text-base">Gratis. Selamanya.</span>
+              </div>
             </div>
-            <div className="w-full max-w-2xl mx-auto">
+            <div className="w-full max-w-2xl mx-auto ">
               <div>
                 <video key="https://i.imgur.com/7rGukPL.mp4" playsInline autoPlay muted loop>
                   <source src="https://i.imgur.com/7rGukPL.mp4" />
