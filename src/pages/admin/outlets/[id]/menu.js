@@ -78,7 +78,7 @@ const CategoryItems = ({ id }) => {
   ) : (
     <button
       className="flex space-x-2 justify-center items-center border-2 border-dashed bg-gray-100 p-4 rounded border-gray-300 hover:border-gray-500 text-gray-500 transition duration-300"
-      onClick={() => router.push(`/admin/outlets/${id}/add_menu`)}
+      onClick={() => router.push(`/admin/outlets/${router.query.id}/add_menu`)}
     >
       <p>
         Kategori ini belum ada menu-nya, <span className="text-gray-900">yuk buat sekarang</span>
