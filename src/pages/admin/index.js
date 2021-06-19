@@ -94,7 +94,7 @@ const Outlet = ({ item, index, showQr }) => {
                   </svg>
                 </span>
               }
-              text="Download QR"
+              text="QR Code"
               onClick={() => {
                 setIsOpen(false)
                 showQr({ show: true, outlet: item })
