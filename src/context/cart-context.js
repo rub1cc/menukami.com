@@ -9,7 +9,7 @@ function CartProvider(props) {
   const addToCart = useCallback(
     (item) => {
       item.qty = 1
-      item.subTotal = (item.sale_price ?? item.price) * item.qty
+      item.subTotal = (item.sale_price || item.price) * item.qty
       setCart([...cart, item])
     },
     [setCart, cart]
@@ -22,7 +22,7 @@ function CartProvider(props) {
       const index = tempCart.indexOf(selectedItem)
       const item = tempCart[index]
       item.qty += 1
-      item.subTotal = (item.sale_price ?? item.price) * item.qty
+      item.subTotal = (item.sale_price || item.price) * item.qty
       setCart([...tempCart])
     },
     [setCart, cart]
@@ -39,7 +39,7 @@ function CartProvider(props) {
         setCart(cart.filter((item) => item.id !== id))
       } else {
         item.qty -= 1
-        item.subTotal = (item.sale_price ?? item.price) * item.qty
+        item.subTotal = (item.sale_price || item.price) * item.qty
         setCart([...tempCart])
       }
     },

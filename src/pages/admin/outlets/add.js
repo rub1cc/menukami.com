@@ -3,6 +3,7 @@ import BackButton from 'components/BackButton'
 import Header from 'components/Header'
 import { Field, Form, Formik, useFormikContext } from 'formik'
 import MobileLayout from 'layouts/MobileLayout'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { CircularProgressbar } from 'react-circular-progressbar'
@@ -12,6 +13,10 @@ import { useMutation } from 'react-query'
 import { storage } from 'utils/firebaseClient'
 import validations from 'utils/validations'
 
+const RichTextEditor = dynamic(import('react-quill'), {
+  ssr: false,
+})
+
 const FileUpload = () => {
   const { values, setFieldValue } = useFormikContext()
   const [progress, setProgress] = useState(null)
@@ -20,7 +25,7 @@ const FileUpload = () => {
     const image = files[0]
     if (image) {
       const filename = `${new Date().getTime()}_${image.name}`
-      const upload = storage.ref(`images/cover/${filename}`).put(image)
+      const upload = storage.ref(`images/logo/${filename}`).put(image)
       upload.on(
         'state_changed',
         (snapshot) => {
@@ -37,11 +42,11 @@ const FileUpload = () => {
         },
         () => {
           storage
-            .ref('images/cover')
+            .ref('images/logo')
             .child(filename)
             .getDownloadURL()
             .then((url) => {
-              setFieldValue('cover', url)
+              setFieldValue('logo', url)
             })
         }
       )
@@ -65,13 +70,13 @@ const FileUpload = () => {
           <div {...getRootProps()} className="focus:outline-none">
             <input {...getInputProps()} />
             <div className="text-gray-400 w-full h-full">
-              {values?.cover ? (
+              {values?.logo ? (
                 <>
                   <div className="bg-gray-900 absolute inset-0"></div>
                   <img
-                    src={values?.cover}
+                    src={values?.logo}
                     className="w-full h-56 object-contain relative"
-                    alt="cover"
+                    alt="logo"
                   />
                   <div className="absolute w-8 h-8 top-0 right-0 mr-2 mt-2 bg-white shadow rounded-full grid place-items-center">
                     <svg
@@ -104,7 +109,7 @@ const FileUpload = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <p>Belum ada cover</p>
+                  <p>Belum ada logo</p>
                 </div>
               )}
             </div>
@@ -160,7 +165,7 @@ function App() {
       validationSchema={validations.outletSchema}
       validateOnMount={true}
     >
-      {({ isValid }) => (
+      {({ isValid, values, setFieldValue }) => (
         <Form>
           <div className="pb-8">
             <Header
@@ -226,7 +231,7 @@ function App() {
                   </div>
                   <div className="shadow sm:rounded-md sm:overflow-hidden">
                     <div className="px-4 py-5 bg-white space-y-4 sm:p-6">
-                      <Field name="cover">
+                      <Field name="logo">
                         {({ meta }) => (
                           <div>
                             <div className="col-span-3 sm:col-span-2">
@@ -265,6 +270,30 @@ function App() {
                       </Field>
 
                       <Field name="description">
+                        {({ meta }) => (
+                          <div>
+                            <div className="col-span-3 sm:col-span-2">
+                              <label
+                                htmlFor="company_website"
+                                className="block text-sm font-medium text-gray-700"
+                              >
+                                Deksripsi
+                              </label>
+                              <div className="mt-1 flex rounded-md shadow-sm">
+                                <RichTextEditor
+                                  value={values.description}
+                                  onChange={(value) => setFieldValue('description', value)}
+                                />
+                              </div>
+                              {meta.touched && meta.error && (
+                                <div className="text-red-500">{meta.error}</div>
+                              )}
+                            </div>
+                          </div>
+                        )}
+                      </Field>
+
+                      <Field name="location">
                         {({ field, meta }) => (
                           <div>
                             <div className="col-span-3 sm:col-span-2">
@@ -272,12 +301,13 @@ function App() {
                                 htmlFor="company_website"
                                 className="block text-sm font-medium text-gray-700"
                               >
-                                Deskripsi
+                                Lokasi
                               </label>
                               <div className="mt-1 flex rounded-md shadow-sm">
                                 <input
                                   type="text"
                                   className="p-2 outline-none flex-1 block w-full rounded-md sm:text-sm border border-gray-300"
+                                  placeholder="Kemayoran, Jakarta Pusat"
                                   {...field}
                                 />
                               </div>
@@ -361,6 +391,30 @@ function App() {
                                   className="p-2 outline-none flex-1 block w-full rounded-md sm:text-sm border border-gray-300"
                                   placeholder="Bank Transfer, OVO, DANA, Gopay"
                                   {...field}
+                                />
+                              </div>
+                              {meta.touched && meta.error && (
+                                <div className="text-red-500">{meta.error}</div>
+                              )}
+                            </div>
+                          </div>
+                        )}
+                      </Field>
+
+                      <Field name="tnc">
+                        {({ meta }) => (
+                          <div>
+                            <div className="col-span-3 sm:col-span-2">
+                              <label
+                                htmlFor="company_website"
+                                className="block text-sm font-medium text-gray-700"
+                              >
+                                Peryaratan & Ketentuan
+                              </label>
+                              <div className="mt-1 flex rounded-md shadow-sm">
+                                <RichTextEditor
+                                  value={values.tnc}
+                                  onChange={(value) => setFieldValue('tnc', value)}
                                 />
                               </div>
                               {meta.touched && meta.error && (

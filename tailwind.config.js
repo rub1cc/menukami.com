@@ -13,6 +13,8 @@ module.exports = {
     },
     extend: {},
   },
-  variants: {},
+  variants: {
+    scale: ['responsive', 'hover', 'focus', 'group-hover'],
+  },
   plugins: [require('tailwindcss-truncate-multiline')()],
 }

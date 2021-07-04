@@ -34,7 +34,7 @@ export default function MenuItem({ data }) {
     )
   }
 
-  const { name, image, description } = data
+  const { name, image } = data
 
   const currItem = cart.find((item) => item.id === data.id)
 
@@ -43,24 +43,24 @@ export default function MenuItem({ data }) {
   return (
     <>
       <button
-        className="flex p-4 space-x-3 hover:bg-gray-100 w-full focus:outline-none"
+        className="group flex flex-col space-x-3 border border-transparent w-full focus:outline-none  overflow-hidden"
         onClick={() => setShowItemDetail(true)}
       >
-        <img src={image} alt={name} className="w-24 h-24 object-cover rounded-lg" />
+        <div className="w-full h-56 overflow-hidden rounded-md">
+          <img
+            src={image}
+            alt={name}
+            className="w-full h-full object-cover rounded-md transform group-hover:scale-150"
+          />
+        </div>
         <div className="flex flex-col justify-between text-left w-full">
-          <div>
-            <p className="text-base mb-2 leading-6">
-              {count ? (
-                <span className="font-bold text-blue-500">
-                  {count} {name}
-                </span>
-              ) : (
-                name
-              )}
+          <div className="py-2">
+            <p className={`font-bold truncate-2-lines pr-8 ${count ? 'text-blue-500' : ''}`}>
+              {count ? `${count} ` : ''}
+              {name}
             </p>
-            <p className="text-gray-600 truncate-2-lines text-sm mb-2 font-light">{description}</p>
+            <Price data={data} className="text-sm" />
           </div>
-          <Price data={data} className="text-sm font-semibold" />
         </div>
       </button>
       <ItemDetail

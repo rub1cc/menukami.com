@@ -25,7 +25,7 @@ export default async function handler(req, res) {
   if (req.method == 'PUT') {
     const { data } = await supabase
       .from('product')
-      .update(req.body)
+      .update({ ...req.body, updated_at: new Date() })
       .eq('id', req.query.id)
       .eq('user_id', user.sub)
 

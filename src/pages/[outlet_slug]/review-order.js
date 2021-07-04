@@ -29,7 +29,7 @@ function ReviewOrder() {
           <div key={`item-${index}`} className="py-4">
             <div className="flex space-x-4">
               <span className="w-full">
-                <span>{item.name}</span>
+                <span className="font-bold">{item.name}</span>
                 <Price data={item} className="text-sm mt-2" />
                 {item.note ? (
                   <span>
@@ -119,7 +119,7 @@ function ReviewOrder() {
 
   return (
     <MobileLayout>
-      <Header leftComponent={<BackButton />} />
+      <Header leftComponent={<BackButton />} title="Keranjang" />
       <div className="space-y-2">
         <div className="bg-white p-4 divide-y-2 divide-gray-200">
           <CartItem />

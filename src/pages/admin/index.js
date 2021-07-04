@@ -160,7 +160,7 @@ const Outlet = ({ item, index, showQr }) => {
         <span className="flex justify-between p-4">
           <span className="flex flex-col">
             <span className="font-normal">{item?.name}</span>
-            <span>{item?.phone}</span>
+            <span>{item?.location}</span>
             <small>
               <span className="text-gray-500">https://menukami.com/{item?.slug}</span>
             </small>
@@ -201,7 +201,7 @@ function Admin() {
               <div className="bg-white p-8 items-center flex flex-col space-y-4">
                 <span className="flex flex-col items-center space-y-3">
                   {/* <img
-                    src={qr.outlet.cover}
+                    src={qr.outlet.logo}
                     alt="qr outlet logo"
                     className="w-16 h-16 object-cover rounded-lg"
                   /> */}

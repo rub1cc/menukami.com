@@ -14,7 +14,9 @@ const validations = {
       .max(20, 'Maximum 20 karakter')
       .matches(outletSlugRegExp, 'Hanya boleh berupa huruf, angka, underscore dan titik')
       .required('Wajib diisi'),
-    cover: yup.string().url('URL gambar tidak valid').required('Wajib diisi'),
+    location: yup.string().required('Wajib diisi'),
+    tnc: yup.string().required('Wajib diisi'),
+    logo: yup.string().url('URL gambar tidak valid').required('Wajib diisi'),
     phone: yup.string().matches(phoneRegExp, 'Nomor tidak valid').required('Wajib diisi'),
     payment: yup.string().required('Wajib diisi'),
   }),

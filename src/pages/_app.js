@@ -5,6 +5,8 @@ const queryClient = new QueryClient()
 
 import '../styles/tailwind.css'
 import '../styles/custom.css'
+import '../styles/unreset.css'
+import 'react-quill/dist/quill.snow.css'
 
 function MyApp({ Component, pageProps }) {
   return (

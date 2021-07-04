@@ -5,7 +5,11 @@ import { supabase } from 'utils/supabaseClient'
 export default async function handler(req, res) {
   // get all category
   if (req.method == 'GET') {
-    let { data, error } = await supabase.from('category').select('*').eq('outlet_id', req.query.id)
+    let { data, error } = await supabase
+      .from('category')
+      .select('*')
+      .eq('outlet_id', req.query.id)
+      .order('created_at', { ascending: false })
     if (data) {
       res.status(200).json(data)
     } else {

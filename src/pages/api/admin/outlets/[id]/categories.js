@@ -22,9 +22,15 @@ export default async function handler(req, res) {
 
   // create new data
   if (req.method == 'POST') {
-    const { data } = await supabase
-      .from('category')
-      .insert([{ ...req.body, outlet_id: req.query.id, user_id: user.sub }])
+    const { data } = await supabase.from('category').insert([
+      {
+        ...req.body,
+        outlet_id: req.query.id,
+        user_id: user.sub,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+    ])
 
     if (data) {
       res.status(200).json({ message: 'Kategori berhasil ditambahkan' })

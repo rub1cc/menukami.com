@@ -13,10 +13,10 @@ export default function ItemDetail({ data, isShow, handleDismiss }) {
   return isShow ? (
     <div
       className={classnames([
-        'fixed z-10 inset-0 overflow-y-auto max-w-md mx-auto transition-all duration-300',
+        'fixed z-10 inset-0 overflow-y-auto max-w-xl mx-auto transition-all duration-300',
       ])}
     >
-      <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+      <div className="flex items-end justify-center min-h-screen text-center sm:block sm:p-0">
         <button
           className="fixed inset-0 transition-opacity w-full h-full focus:outline-none"
           onClick={() => handleDismiss()}
@@ -25,7 +25,7 @@ export default function ItemDetail({ data, isShow, handleDismiss }) {
         </button>
         <span className="hidden sm:inline-block sm:align-middle sm:h-screen"></span>&#8203;
         <div
-          className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-lg  w-full max-w-md"
+          className="inline-block align-bottom bg-white text-left overflow-hidden shadow-xl transform transition-all sm:align-middle w-full max-w-xl"
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-headline"
@@ -51,8 +51,8 @@ export default function ItemDetail({ data, isShow, handleDismiss }) {
           </button>
           <div className="bg-gray-200">
             <div className="flex flex-col">
-              <div className="w-full bg-gray-100 space-y-1">
-                <img src={image} alt={name} className="w-full object-cover" />
+              <div className="w-full bg-white space-y-1 h-screen">
+                <img src={image} alt={name} className="w-full h-80 md:h-96 object-cover" />
                 <div className="py-4 px-4 bg-white">
                   <p className="text-xl font-bold">{name}</p>
                   <Price data={data} />

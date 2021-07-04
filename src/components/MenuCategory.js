@@ -16,11 +16,13 @@ export default function MenuCategory({ name, id, className }) {
   if (!data) return null
   return (
     <div className={[className, ' bg-white']}>
-      <p className="text-xl font-bold px-4 pb-2 pt-4">{name}</p>
-      <div className="rounded-lg overflow-hidden mt-2">
-        {data?.map((item) => (
-          <MenuItem data={item} key={item.id} />
-        ))}
+      <p className="text-xl font-bold px-4 pt-4">{name}</p>
+      <div className="rounded-lg overflow-hidden">
+        <div className="grid grid-cols-2 gap-4 p-4">
+          {data?.map((item) => (
+            <MenuItem data={item} key={item.id} />
+          ))}
+        </div>
       </div>
     </div>
   )

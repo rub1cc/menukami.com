@@ -8,7 +8,9 @@ export default async function handler(req, res) {
 
   // create new data
   if (req.method == 'POST') {
-    const { data } = await supabase.from('product').insert([{ ...req.body, user_id: user.sub }])
+    const { data } = await supabase
+      .from('product')
+      .insert([{ ...req.body, user_id: user.sub, created_at: new Date(), updated_at: new Date() }])
 
     if (data) {
       res.status(200).json({ message: 'Produk berhasil ditambahkan' })

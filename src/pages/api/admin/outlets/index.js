@@ -33,7 +33,9 @@ export default async function handler(req, res) {
       return res.status(409).json({ message: 'Custom link telah digunakan. Coba yang lain.' })
     }
 
-    const { data } = await supabase.from('outlets').insert([{ ...req.body, user_id: user.sub }])
+    const { data } = await supabase
+      .from('outlets')
+      .insert([{ ...req.body, user_id: user.sub, created_at: new Date(), updated_at: new Date() }])
 
     if (data) {
       res.status(200).json({ message: 'Outlet berhasil dibuat' })

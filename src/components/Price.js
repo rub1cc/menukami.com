@@ -5,9 +5,9 @@ export default function Price({ data, className }) {
   const { price, sale_price } = data
 
   return sale_price ? (
-    <span className={classnames(['flex space-x-2 items-center', className])}>
-      <p>{formatToCurrency(sale_price)}</p>
-      <small className="text-gray-500 line-through">{formatToCurrency(price)}</small>
+    <span className={classnames(['flex flex-col ', className])}>
+      <p className="text-red-600">{formatToCurrency(sale_price)}</p>
+      <p className="text-gray-500 line-through">{formatToCurrency(price)}</p>
     </span>
   ) : (
     <p className={className}>{formatToCurrency(price)}</p>
