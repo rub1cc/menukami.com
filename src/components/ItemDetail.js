@@ -1,6 +1,7 @@
 import * as classnames from 'classnames'
 import { useCart } from 'context/cart-context'
-import Price from './Price'
+import { SRLWrapper } from 'simple-react-lightbox'
+import ItemDetailPrice from './ItemDetailPrice'
 
 export default function ItemDetail({ data, isShow, handleDismiss }) {
   const { id, image, name, description } = data
@@ -52,11 +53,22 @@ export default function ItemDetail({ data, isShow, handleDismiss }) {
           <div className="bg-gray-200">
             <div className="flex flex-col">
               <div className="w-full bg-white space-y-1 h-screen">
-                <img src={image} alt={name} className="w-full h-56 sm:h-80 md:h-96 object-cover" />
+                <SRLWrapper>
+                  <a href={image}>
+                    <img
+                      src={image}
+                      alt={name}
+                      className="w-full h-56 sm:h-80 md:h-96 object-cover"
+                    />
+                  </a>
+                </SRLWrapper>
                 <div className="py-4 px-4 bg-white">
                   <p className="text-xl font-bold">{name}</p>
+                  {description ? (
+                    <p className="font-light text-gray-600 mb-4">{description}</p>
+                  ) : null}
                   <div className="flex justify-between items-center">
-                    <Price data={data} />
+                    <ItemDetailPrice data={data} />
                     <div className="flex justify-end items-center bg-white">
                       {itemInCart ? (
                         <div className="space-x-4 flex items-center ">
@@ -65,7 +77,7 @@ export default function ItemDetail({ data, isShow, handleDismiss }) {
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
-                            className="w-8 h-8 border border-gray-300 rounded-md p-1 text-blue-500 hover:border-gray-400 transition duration-300 cursor-pointer"
+                            className="w-7 h-7 border border-gray-300 rounded-md p-1 text-blue-500 hover:border-gray-400 transition duration-300 cursor-pointer"
                             onClick={() => decrement(id)}
                           >
                             <path
@@ -81,7 +93,7 @@ export default function ItemDetail({ data, isShow, handleDismiss }) {
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
-                            className="w-8 h-8 border border-gray-300 rounded-md p-1 text-blue-500 hover:border-gray-400 transition duration-300 cursor-pointer"
+                            className="w-7 h-7 border border-gray-300 rounded-md p-1 text-blue-500 hover:border-gray-400 transition duration-300 cursor-pointer"
                             onClick={() => increment(id)}
                           >
                             <path
@@ -98,7 +110,7 @@ export default function ItemDetail({ data, isShow, handleDismiss }) {
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
-                          className="w-8 h-8 border border-gray-300 rounded-md p-1 text-blue-500 hover:border-gray-400 transition duration-300 cursor-pointer"
+                          className="w-7 h-7 border border-gray-300 rounded-md p-1 text-blue-500 hover:border-gray-400 transition duration-300 cursor-pointer"
                           onClick={handleAddItem}
                         >
                           <path
@@ -111,15 +123,13 @@ export default function ItemDetail({ data, isShow, handleDismiss }) {
                       )}
                     </div>
                   </div>
-
-                  <p className="font-light text-gray-600 mt-2">{description}</p>
                 </div>
                 {itemInCart ? (
                   <div className="px-4 bg-white">
                     <input
                       value={itemInCart.note}
-                      placeholder="Beri catatan untuk penjual"
-                      className="mt-2 w-full px-4 py-3 rounded-lg focus:outline-none border"
+                      placeholder="Catatan untuk produk ini"
+                      className="w-full px-4 py-3 rounded-lg focus:outline-none border"
                       onChange={(e) => updateNote(id, e.target.value)}
                     ></input>
                   </div>

@@ -2,6 +2,7 @@ import { useCart } from 'context/cart-context'
 import { useState } from 'react'
 import ItemDetail from './ItemDetail'
 import Price from './Price'
+import SimpleReactLightbox from 'simple-react-lightbox'
 
 export default function MenuItem({ data }) {
   const { cart } = useCart()
@@ -59,15 +60,17 @@ export default function MenuItem({ data }) {
               {count ? `${count} ` : ''}
               {name}
             </p>
-            <Price data={data} className="text-sm" />
+            <Price data={data} className="text-sm flex-col" />
           </div>
         </div>
       </button>
-      <ItemDetail
-        data={data}
-        isShow={isShowItemDetail}
-        handleDismiss={() => setShowItemDetail(false)}
-      />
+      <SimpleReactLightbox>
+        <ItemDetail
+          data={data}
+          isShow={isShowItemDetail}
+          handleDismiss={() => setShowItemDetail(false)}
+        />
+      </SimpleReactLightbox>
     </>
   )
 }

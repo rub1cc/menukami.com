@@ -1,11 +1,11 @@
 import * as classnames from 'classnames'
 import { useCart } from 'context/cart-context'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 
-export default function NoteForm({ data, isShow, handleDismiss }) {
+export default function NoteForm({ data, handleDismiss }) {
   const { id } = data
   const { cart, updateNote } = useCart()
-  const itemInCart = cart.filter((item) => item.id === id)[0]
+  const itemInCart = useMemo(() => cart.filter((item) => item.id === id)[0], [id])
 
   const [note, setNote] = useState(itemInCart.note)
 
@@ -19,13 +19,13 @@ export default function NoteForm({ data, isShow, handleDismiss }) {
     dismiss()
   }
 
-  return isShow ? (
+  return (
     <div
       className={classnames([
-        'fixed z-10 inset-0 overflow-y-auto max-w-md mx-auto transition-all duration-300',
+        'fixed z-20 inset-0 overflow-y-auto max-w-md mx-auto transition-all duration-300',
       ])}
     >
-      <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+      <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
         <button
           className="fixed inset-0 transition-opacity w-full h-full focus:outline-none"
           onClick={dismiss}
@@ -46,7 +46,7 @@ export default function NoteForm({ data, isShow, handleDismiss }) {
                   <div className="py-4 px-4 bg-white">
                     <input
                       value={note}
-                      placeholder="Beri catatan untuk penjual"
+                      placeholder="Catatan untuk produk ini"
                       className="mt-2 w-full px-4 py-3 rounded-lg focus:outline-none border"
                       onChange={(e) => setNote(e.target.value)}
                     ></input>
@@ -66,5 +66,5 @@ export default function NoteForm({ data, isShow, handleDismiss }) {
         </div>
       </div>
     </div>
-  ) : null
+  )
 }

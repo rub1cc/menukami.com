@@ -11,7 +11,11 @@ import prepareWAMessage from 'utils/prepareTextMessage'
 
 function ReviewOrder() {
   const { cart } = useCart()
-  const [isShowItemDetail, setShowItemDetail] = useState(false)
+
+  const [noteForm, setNoteForm] = useState({
+    data: null,
+    isShow: false,
+  })
   const [deliveryAddress, setDeliveryAddress] = useState('')
   const totalCartPrice = cart.reduce((prev, next) => prev + next.subTotal, 0) || 0
   // const deliveryFsee = 0
@@ -30,13 +34,13 @@ function ReviewOrder() {
             <div className="flex space-x-4">
               <span className="w-full">
                 <span className="font-bold">{item.name}</span>
-                <Price data={item} className="text-sm mt-2" />
+                <Price data={item} className="text-sm mt-2 space-x-2" />
                 {item.note ? (
                   <span>
                     <span className="text-sm text-gray-600 font-light">{item.note}</span>{' '}
                     <button
                       className="text-sm text-blue-500 font-light inline focus:outline-none"
-                      onClick={() => setShowItemDetail(true)}
+                      onClick={() => setNoteForm({ isShow: true, data: item })}
                     >
                       Edit
                     </button>
@@ -44,7 +48,7 @@ function ReviewOrder() {
                 ) : (
                   <button
                     className="text-sm text-blue-500 font-light inline focus:outline-none"
-                    onClick={() => setShowItemDetail(true)}
+                    onClick={() => setNoteForm({ isShow: true, data: item })}
                   >
                     Tambah catatan
                   </button>
@@ -57,7 +61,7 @@ function ReviewOrder() {
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
-                    className="w-6 h-6 border border-gray-400 rounded-full p-1 text-blue-500 hover:border-gray-600 transition duration-300 cursor-pointer"
+                    className="w-6 h-6 border border-gray-300 rounded-md p-1 text-blue-500 hover:border-gray-400 transition duration-300 cursor-pointer"
                     onClick={() => decrement(item.id)}
                   >
                     <path
@@ -73,7 +77,7 @@ function ReviewOrder() {
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
-                    className="w-6 h-6 border border-gray-400 rounded-full p-1 text-blue-500 hover:border-gray-600 transition duration-300 cursor-pointer"
+                    className="w-6 h-6 border border-gray-300 rounded-md p-1 text-blue-500 hover:border-gray-400 transition duration-300 cursor-pointer"
                     onClick={() => increment(item.id)}
                   >
                     <path
@@ -86,16 +90,17 @@ function ReviewOrder() {
                 </div>
               </div>
             </div>
-            <NoteForm
-              data={item}
-              isShow={isShowItemDetail}
-              handleDismiss={() => setShowItemDetail(false)}
-            />
+            {noteForm.isShow ? (
+              <NoteForm
+                data={{ ...noteForm.data }}
+                handleDismiss={() => setNoteForm({ isShow: false, data: null })}
+              />
+            ) : null}
           </div>
         )
       })
     ) : (
-      <div className="p-10 flex flex-col justify-center items-center space-y-4">
+      <div className="py-10 px-4 flex flex-col justify-center items-center space-y-6">
         <span className="bg-blue-100 p-5 rounded-full">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -112,16 +117,16 @@ function ReviewOrder() {
             />
           </svg>
         </span>
-        <p className="text-gray-600">Yaah, keranjangmu masih kosong.</p>
+        <p className="text-gray-600 w-full text-center">Keranjangmu masih kosong.</p>
       </div>
     )
   }
 
   return (
-    <MobileLayout>
+    <MobileLayout className="bg-gray-100 min-h-screen">
       <Header leftComponent={<BackButton />} title="Keranjang" />
-      <div className="space-y-2">
-        <div className="bg-white p-4 divide-y-2 divide-gray-200">
+      <div className="space-y-2 pb-32">
+        <div className="bg-white p-4 divide-gray-200">
           <CartItem />
         </div>
         {cart.length > 0 ? (
@@ -129,11 +134,15 @@ function ReviewOrder() {
             <p className="text-base font-semibold">Informasi Tambahan</p>
             <textarea
               value={deliveryAddress}
+              placeholder="Beri catatan untuk penjual"
               className="mt-2 w-full px-4 py-3 rounded-md focus:outline-none border"
               onChange={(event) => setDeliveryAddress(event.target.value)}
             />
           </div>
         ) : null}
+      </div>
+
+      <div className="fixed bottom-0 inset-x-0 max-w-xl mx-auto w-full focus:outline-none z-10 bg-white shadow-2xl">
         <div className="py-4 px-4 bg-white space-y-2">
           <span className="flex justify-between font-bold">
             <p>Total pesanan</p>
@@ -148,19 +157,18 @@ function ReviewOrder() {
             <p>{formatToCurrency(totalPrice)}</p>
           </span> */}
         </div>
+        {cart.length > 0 ? (
+          <button className="w-full mb-4" onClick={handleOrderButton}>
+            <div
+              className={classnames([
+                'flex rounded-lg text-white text-center p-4 justify-between mx-4 focus:outline-none bg-blue-500',
+              ])}
+            >
+              <div className="text-center w-full">Pesan via WhatsApp</div>
+            </div>
+          </button>
+        ) : null}
       </div>
-
-      {cart.length > 0 ? (
-        <button className="w-full my-4" onClick={handleOrderButton}>
-          <div
-            className={classnames([
-              'flex rounded-lg text-white text-center p-4 justify-between mx-4 focus:outline-none bg-blue-500',
-            ])}
-          >
-            <div className="text-center w-full">Pesan via WhatsApp</div>
-          </div>
-        </button>
-      ) : null}
     </MobileLayout>
   )
 }

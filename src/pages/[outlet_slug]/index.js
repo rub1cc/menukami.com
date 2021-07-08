@@ -121,11 +121,8 @@ export async function getStaticPaths() {
       params: { outlet_slug: item.slug },
     }))
 
-    console.log(paths)
-
     return { paths, fallback: 'blocking' }
   } catch (er) {
-    console.error(er)
     return { paths: [], fallback: false } // <- ADDED RETURN STMNT
   }
 }
