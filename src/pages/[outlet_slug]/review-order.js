@@ -18,7 +18,7 @@ function ReviewOrder() {
   // const totalPrice = totalCartPrice + deliveryFee
   const handleOrderButton = () =>
     window.open(
-      prepareWAMessage(cart, JSON.parse(sessionStorage.getItem('menukami_store')), deliveryAddress)
+      prepareWAMessage(cart, JSON.parse(localStorage.getItem('menukami_store')), deliveryAddress)
     )
 
   function CartItem() {

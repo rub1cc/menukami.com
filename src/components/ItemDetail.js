@@ -52,15 +52,70 @@ export default function ItemDetail({ data, isShow, handleDismiss }) {
           <div className="bg-gray-200">
             <div className="flex flex-col">
               <div className="w-full bg-white space-y-1 h-screen">
-                <img src={image} alt={name} className="w-full h-80 md:h-96 object-cover" />
+                <img src={image} alt={name} className="w-full h-56 sm:h-80 md:h-96 object-cover" />
                 <div className="py-4 px-4 bg-white">
                   <p className="text-xl font-bold">{name}</p>
-                  <Price data={data} />
+                  <div className="flex justify-between items-center">
+                    <Price data={data} />
+                    <div className="flex justify-end items-center bg-white">
+                      {itemInCart ? (
+                        <div className="space-x-4 flex items-center ">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            className="w-8 h-8 border border-gray-300 rounded-md p-1 text-blue-500 hover:border-gray-400 transition duration-300 cursor-pointer"
+                            onClick={() => decrement(id)}
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M20 12H4"
+                            />
+                          </svg>
+                          <span className="text-xl">{count}</span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            className="w-8 h-8 border border-gray-300 rounded-md p-1 text-blue-500 hover:border-gray-400 transition duration-300 cursor-pointer"
+                            onClick={() => increment(id)}
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                            />
+                          </svg>
+                        </div>
+                      ) : (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          className="w-8 h-8 border border-gray-300 rounded-md p-1 text-blue-500 hover:border-gray-400 transition duration-300 cursor-pointer"
+                          onClick={handleAddItem}
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                          />
+                        </svg>
+                      )}
+                    </div>
+                  </div>
 
                   <p className="font-light text-gray-600 mt-2">{description}</p>
                 </div>
                 {itemInCart ? (
-                  <div className="py-4 px-4 bg-white">
+                  <div className="px-4 bg-white">
                     <input
                       value={itemInCart.note}
                       placeholder="Beri catatan untuk penjual"
@@ -69,50 +124,6 @@ export default function ItemDetail({ data, isShow, handleDismiss }) {
                     ></input>
                   </div>
                 ) : null}
-                <div className="flex p-4 justify-center items-center bg-white">
-                  {itemInCart ? (
-                    <div className="space-x-4 flex items-center ">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        className="w-8 h-8 border border-gray-400 rounded-full p-1 text-blue-500 hover:border-gray-600 transition duration-300 cursor-pointer"
-                        onClick={() => decrement(id)}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M20 12H4"
-                        />
-                      </svg>
-                      <span className="text-xl">{count}</span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        className="w-8 h-8 border border-gray-400 rounded-full p-1 text-blue-500 hover:border-gray-600 transition duration-300 cursor-pointer"
-                        onClick={() => increment(id)}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                        />
-                      </svg>
-                    </div>
-                  ) : (
-                    <button
-                      className="px-4 py-2 bg-blue-500 rounded-md text-white w-full focus:outline-none"
-                      onClick={handleAddItem}
-                    >
-                      <span>Tambah</span>
-                    </button>
-                  )}
-                </div>
               </div>
             </div>
           </div>

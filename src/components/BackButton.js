@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router'
 
-export default function BackButton() {
+export default function BackButton({ onClick }) {
   const router = useRouter()
   return (
     <div
       className="bg-gray-100 rounded-full p-1 border border-gray-200 hover:border-gray-500 transition duration-300 focus:outline-none"
-      onClick={() => router.back()}
+      onClick={() => (onClick ? onClick() : router.back())}
       role="button"
     >
       <svg

@@ -1,83 +1,43 @@
 import Brand from 'components/Brand'
-import FullScreenLoading from 'components/FullScreenLoading'
 import MenuCategory from 'components/MenuCategory'
 import OrderButton from 'components/OrderButton'
 import StoreDetail from 'components/StoreDetail'
 import MobileLayout from 'layouts/MobileLayout'
-import DefaultErrorPage from 'next/error'
 import Head from 'next/head'
-import { withRouter } from 'next/router'
-import { useState } from 'react'
-import { useQuery } from 'react-query'
+import { useEffect, useState } from 'react'
+import { supabase } from 'utils/supabaseClient'
 
-function useMenus(id) {
-  return useQuery(
-    ['getOutletCategories', id],
-    () => fetch(`/api/public/obi/${id}/categories`).then((res) => res.json()),
-    {
-      enabled: !!id,
-    }
-  )
-}
-
-function Menu({ router }) {
-  const { outlet_slug } = router.query
-
-  if (!outlet_slug) {
-    return null
-  }
+function Menu({ data, categories }) {
   const [tab, setTab] = useState('product')
 
-  const { data } = useQuery('getOutletData', () =>
-    fetch(`/api/public/obs/${outlet_slug}`).then((res) => res.json())
-  )
-
-  const outlet_id = data?.id
-
-  const { data: categories } = useMenus(outlet_id)
-
-  if (!data || !categories) {
-    return <FullScreenLoading />
-  }
-
-  if (data.length == 0) {
-    return <DefaultErrorPage statusCode={404} />
-  }
-
-  sessionStorage.setItem(
-    'menukami_store',
-    JSON.stringify({
-      name: data?.name,
-      phone: data.phone.startsWith('62') ? data.phone : '62' + data.phone,
-    })
-  )
+  useEffect(() => {
+    localStorage.setItem(
+      'menukami_store',
+      JSON.stringify({
+        name: data?.name,
+        slug: data?.slug,
+        phone: data.phone.startsWith('62') ? data.phone : '62' + data.phone,
+      })
+    )
+  }, [])
 
   return (
     <MobileLayout>
       <Head>
         <title>{data.name} - Menukami</title>
         <meta name="title" content={`${data.name} - Menukami`} />
-        <meta
-          name="description"
-          content="Platform menu digital, mudah untuk disebarkan dan pelanggan dapat melakukan pesanan langsung yang akan dikirim via Whatsapp. Buat menu kamu sekarang!"
-        />
+        <meta name="description" content={data.description} />
 
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`https://menukami.com/${data.slug}`} />
         <meta property="og:title" content={`${data.name} - Menukami`} />
-        <meta
-          property="og:description"
-          content="Platform menu digital, mudah untuk disebarkan dan pelanggan dapat melakukan pesanan langsung yang akan dikirim via Whatsapp. Buat menu kamu sekarang!"
-        />
+        <meta property="og:description" content={data.description} />
         <meta property="og:image" content={data.logo} />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content={`https://menukami.com/${data.slug}`} />
         <meta property="twitter:title" content={`${data.name} - Menukami`} />
-        <meta
-          property="twitter:description"
-          content="Platform menu digital, mudah untuk disebarkan dan pelanggan dapat melakukan pesanan langsung yang akan dikirim via Whatsapp. Buat menu kamu sekarang!"
-        />
+        <meta property="twitter:description" content={data.description} />
         <meta property="twitter:image" content={data.logo} />
       </Head>
       <main className="flex flex-col w-full h-screen bg-white">
@@ -153,4 +113,38 @@ function Menu({ router }) {
   )
 }
 
-export default withRouter(Menu)
+export async function getStaticPaths() {
+  try {
+    const { data: outlets } = await supabase.from('outlets').select('*')
+
+    const paths = outlets.map((item) => ({
+      params: { outlet_slug: item.slug },
+    }))
+
+    console.log(paths)
+
+    return { paths, fallback: 'blocking' }
+  } catch (er) {
+    console.error(er)
+    return { paths: [], fallback: false } // <- ADDED RETURN STMNT
+  }
+}
+
+export async function getStaticProps({ params }) {
+  // Fetch data from external API
+  try {
+    const res = await fetch(`https://menukami.com/api/public/obs/${params.outlet_slug}`)
+    const data = await res.json()
+
+    const res2 = await fetch(`https://menukami.com/api/public/obi/${data.id}/categories`)
+    const categories = await res2.json()
+
+    return { props: { data, categories }, revalidate: 10 }
+  } catch (e) {
+    return {
+      notFound: true,
+    }
+  }
+}
+
+export default Menu

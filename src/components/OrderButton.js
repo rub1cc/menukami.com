@@ -12,7 +12,7 @@ export default function OrderButton() {
 
   return cart?.length > 0 ? (
     <Link href={`/${outlet_slug}/review-order`}>
-      <button className="fixed bottom-0 inset-x-0 mb-4 max-w-xl mx-auto w-full focus:outline-none">
+      <button className="fixed bottom-0 inset-x-0 mb-4 max-w-xl mx-auto w-full focus:outline-none z-50">
         <div className="flex rounded-lg text-white text-center bg-blue-500 p-4 justify-between mx-4">
           <p className="font-bold">{totalItem} item</p>
           <span className="flex space-x-1 items-center justify-center">

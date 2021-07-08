@@ -4,26 +4,55 @@ import DesktopLayout from 'layouts/DesktopLayout'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
+function HeroTitle({ children, className }) {
+  return (
+    <h1 className={`text-3xl md:text-6xl leading-tight font-bold tracking-tight ${className}`}>
+      {children}
+    </h1>
+  )
+}
+
+// function SectionTitle({ children, className }) {
+//   return (
+//     <h2
+//       className={`text-2xl md:text-4xl leading-tight font-bold tracking-tight text-center ${className}`}
+//     >
+//       {children}
+//     </h2>
+//   )
+// }
+
+function SectionDescription({ children, className }) {
+  return <h3 className={`text-sm md:text-xl text-gray-600 ${className}`}>{children}</h3>
+}
+
 function Hero() {
   const router = useRouter()
   return (
     <div className="bg-white">
       <DesktopLayout>
-        <div className="flex py-12 space-x-32">
-          <div className="text-center">
-            <div className="text-3xl md:text-6xl leading-tight">
-              Kembangkan Bisnis Kamu Tanpa Komisi
-            </div>
-            <div className="text-sm md:text-xl text-gray-600 mt-4">
-              Buat menu & terima pesanan langsung via Whatsapp
-            </div>
-            <div className="flex items-start justify-center space-x-4">
+        <div className="md:flex py-12 md:max-h-screen">
+          <div className="md:w-1/2 md:py-12 pr-16 md:pr-32 relative">
+            <img src="/images/women-with-phone.jpeg" alt="" className="rounded-3xl" />
+            <img
+              src="/images/cacastore-screenshot.png"
+              alt=""
+              className="absolute top-0 right-0 w-32 md:w-48 mt-16 md:mt-32 transform shadow-xl rounded-xl"
+            />
+          </div>
+          <div className="md:w-1/2 md:px-12 flex flex-col justify-center relative mt-12 md:mt-0">
+            <HeroTitle>Kembangkan bisnis. Permudah pelanggan.</HeroTitle>
+            <SectionDescription className="mt-8">
+              Platform menu digital yang memungkinkan pelanggan memesan produkmu langsung melalui
+              WhatsApp.
+            </SectionDescription>
+            <div className="flex items-center space-x-4 mt-8">
               <div>
                 <button
-                  className="flex items-center space-x-4 mt-8 bg-gray-900 px-6 py-3 rounded-full text-white tracking-wider text-sm md:text-xl"
+                  className="flex items-center space-x-4 bg-gray-900 px-6 py-3 rounded-full text-white tracking-wider text-sm md:text-xl"
                   onClick={() => router.push('/admin')}
                 >
-                  <span>Buat Sekarang</span>
+                  <span>Buat Menu</span>
                   <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -39,14 +68,6 @@ function Hero() {
                     </svg>
                   </span>
                 </button>
-                <span className="mt-2 block text-xs md:text-base">Gratis. Selamanya.</span>
-              </div>
-            </div>
-            <div className="w-full max-w-2xl mx-auto ">
-              <div>
-                <video key="https://i.imgur.com/7rGukPL.mp4" playsInline autoPlay muted loop>
-                  <source src="https://i.imgur.com/7rGukPL.mp4" />
-                </video>
               </div>
             </div>
           </div>

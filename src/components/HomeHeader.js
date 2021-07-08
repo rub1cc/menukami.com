@@ -1,11 +1,12 @@
+import DesktopLayout from 'layouts/DesktopLayout'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 
 function LoginButton() {
   return (
-    <div className="flex space-x-4 items-center">
-      <Link href="/zona_gamers">
+    <div className="flex space-x-8 items-center">
+      <Link href="/cacastore">
         <button className="focus:outline-none">Demo</button>
       </Link>
       <Link href="/admin">
@@ -19,7 +20,7 @@ function HomeHeader() {
   const router = useRouter()
   return (
     <div className="bg-white">
-      <div className="md:px-8">
+      <DesktopLayout>
         <div className="flex justify-between py-5">
           <button className="text-2xl flex items-center space-x-3" onClick={() => router.push('/')}>
             <svg
@@ -39,7 +40,7 @@ function HomeHeader() {
           </button>
           <LoginButton />
         </div>
-      </div>
+      </DesktopLayout>
     </div>
   )
 }
