@@ -52,9 +52,9 @@ function Hero() {
               Platform menu digital yang memungkinkan pelanggan memesan produkmu langsung melalui
               WhatsApp.
             </SectionDescription>
-            <div className="flex items-center space-x-4 mt-8">
+            <div className="flex flex-col space-y-4 md:space-y-0 md:flex-row md:items-center md:space-x-4 mt-8">
               <button
-                className="flex items-center space-x-4 bg-gray-900 px-6 py-3 rounded-full text-white tracking-wider text-sm md:text-xl"
+                className="text-left flex items-center space-x-4 border border-gray-900 bg-gray-900 px-6 py-3 rounded-full text-white justify-between"
                 onClick={() => router.push('/admin')}
               >
                 <span>Buat Menu</span>
@@ -74,7 +74,7 @@ function Hero() {
                 </span>
               </button>
               <button
-                className="flex items-center space-x-4 border border-gray-900 px-6 py-3 rounded-full tracking-wider text-sm md:text-xl"
+                className="text-left flex items-center space-x-4 border border-gray-900 px-6 py-3 rounded-full justify-between"
                 onClick={() => router.push('/cacastore')}
               >
                 <span>Lihat Demo</span>
