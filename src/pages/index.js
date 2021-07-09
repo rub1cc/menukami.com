@@ -43,7 +43,7 @@ function Hero() {
             <img
               src="/images/cacastore-screenshot.png"
               alt=""
-              className="absolute top-0 right-0 w-32 md:w-48 mt-16 md:mt-32 transform shadow-xl rounded-xl"
+              className="absolute top-0 right-0 w-32 md:w-48 mt-16 md:mt-32 transform shadow-2xl rounded-xl"
             />
           </div>
           <div className="md:w-1/2 md:px-12 flex flex-col justify-center relative mt-12 md:mt-0">
@@ -53,28 +53,46 @@ function Hero() {
               WhatsApp.
             </SectionDescription>
             <div className="flex items-center space-x-4 mt-8">
-              <div>
-                <button
-                  className="flex items-center space-x-4 bg-gray-900 px-6 py-3 rounded-full text-white tracking-wider text-sm md:text-xl"
-                  onClick={() => router.push('/admin')}
-                >
-                  <span>Buat Menu</span>
-                  <span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </span>
-                </button>
-              </div>
+              <button
+                className="flex items-center space-x-4 bg-gray-900 px-6 py-3 rounded-full text-white tracking-wider text-sm md:text-xl"
+                onClick={() => router.push('/admin')}
+              >
+                <span>Buat Menu</span>
+                <span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </span>
+              </button>
+              <button
+                className="flex items-center space-x-4 border border-gray-900 px-6 py-3 rounded-full tracking-wider text-sm md:text-xl"
+                onClick={() => router.push('/cacastore')}
+              >
+                <span>Lihat Demo</span>
+                <span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </span>
+              </button>
             </div>
           </div>
         </div>

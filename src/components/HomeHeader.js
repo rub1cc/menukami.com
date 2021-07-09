@@ -7,9 +7,6 @@ import Logo from './Logo'
 function LoginButton() {
   return (
     <div className="flex space-x-8 items-center">
-      <Link href="/cacastore">
-        <button className="focus:outline-none">Demo</button>
-      </Link>
       <Link href="/admin">
         <button className="focus:outline-none">Login</button>
       </Link>
@@ -25,7 +22,9 @@ function HomeHeader() {
         <div className="flex justify-between py-5">
           <button className="text-2xl flex items-center space-x-3" onClick={() => router.push('/')}>
             <Logo />
-            <span className="tracking-tighter">menukami</span>
+            <span className="font-bold" style={{ letterSpacing: '-3px' }}>
+              menukami
+            </span>
           </button>
           <LoginButton />
         </div>

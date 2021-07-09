@@ -8,7 +8,9 @@ export default function Brand() {
           <img src="/images/logo-dark.png" className="w-6 h-6" alt="Menukami logo" />
           <small className="flex flex-col leading-3">
             <small>powered by</small>
-            <span className="tracking-tighter font-bold">menukami</span>
+            <span className="font-bold" style={{ letterSpacing: '-1.75px' }}>
+              menukami
+            </span>
           </small>
         </span>
       </Link>
