@@ -14,3 +14,7 @@
 .ql-container {
   height: auto !important;
 }
+
+.quill {
+  width: 100%;
+}

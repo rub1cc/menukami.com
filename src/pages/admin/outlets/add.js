@@ -158,7 +158,16 @@ function App() {
 
   return (
     <Formik
-      initialValues={{}}
+      initialValues={{
+        name: '',
+        description: '',
+        slug: '',
+        location: '',
+        tnc: '',
+        logo: '',
+        phone: '',
+        payment: '',
+      }}
       onSubmit={(values) => {
         mutation.mutate(values)
       }}
