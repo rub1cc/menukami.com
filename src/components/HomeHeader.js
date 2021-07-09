@@ -27,7 +27,7 @@ function HomeHeader() {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
-              className="w-8 h-8 text-blue-600 bg-blue-100 rounded-full p-1"
+              className="w-8 h-8 text-white bg-blue-500 rounded-full p-1"
             >
               <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
               <path
