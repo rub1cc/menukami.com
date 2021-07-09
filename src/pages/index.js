@@ -14,9 +14,7 @@ import {
 
 function HeroTitle({ children, className }) {
   return (
-    <h1 className={`text-3xl md:text-6xl leading-tight font-bold tracking-tight ${className}`}>
-      {children}
-    </h1>
+    <h1 className={`text-3xl md:text-5xl font-bold tracking-tight ${className}`}>{children}</h1>
   )
 }
 
@@ -49,7 +47,7 @@ function Hero() {
             />
           </div>
           <div className="md:w-1/2 md:px-12 flex flex-col justify-center relative mt-12 md:mt-0">
-            <HeroTitle>Kembangkan bisnis. Permudah pelanggan.</HeroTitle>
+            <HeroTitle>Tingkatan penjualan. Permudah pelanggan.</HeroTitle>
             <SectionDescription className="mt-8">
               Platform menu digital yang memungkinkan pelanggan memesan produkmu langsung melalui
               WhatsApp.
