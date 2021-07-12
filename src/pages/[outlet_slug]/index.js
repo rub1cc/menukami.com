@@ -16,6 +16,7 @@ function Menu({ data, categories }) {
       JSON.stringify({
         name: data?.name,
         slug: data?.slug,
+        delivery: data?.delivery,
         phone: data.phone.startsWith('62') ? data.phone : '62' + data.phone,
       })
     )

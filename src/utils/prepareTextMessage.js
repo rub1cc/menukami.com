@@ -1,6 +1,6 @@
 import formatToCurrency from './formatToCurrency'
 
-export default function prepareWAMessage(cart, store, address) {
+export default function prepareWAMessage(cart, store, { note, deliveryAddress }) {
   const { name, phone } = store
   const formatText = (item) => {
     let text = `*${item.qty} x ${item.name}*\n`
@@ -19,11 +19,19 @@ export default function prepareWAMessage(cart, store, address) {
   message += `${menuText.join('\n\n')}\n`
   message += `---\n`
   message += `*Total:* ${formatToCurrency(totalPrice)}\n`
-  if (address) {
+
+  if (note) {
     message += `---\n`
     message += `*Note:*\n`
-    message += `${address}\n`
+    message += `${note}\n`
   }
+
+  if (store.delivery) {
+    message += `---\n`
+    message += `*Dikirim ke:*\n`
+    message += `${deliveryAddress}\n`
+  }
+
   message += `\nTerima kasih!`
 
   return `https://wa.me/${phone.replace('+', '')}?text=${encodeURIComponent(message)}`

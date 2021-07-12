@@ -418,7 +418,7 @@ function App() {
                                 htmlFor="company_website"
                                 className="block text-sm font-medium text-gray-700"
                               >
-                                Peryaratan & Ketentuan
+                                Persyaratan & Ketentuan
                               </label>
                               <div className="mt-1 flex rounded-md shadow-sm">
                                 <RichTextEditor

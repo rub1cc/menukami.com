@@ -47,7 +47,7 @@ function Hero() {
             />
           </div>
           <div className="md:w-1/2 md:px-12 flex flex-col justify-center relative mt-12 md:mt-0">
-            <HeroTitle>Tingkatan penjualan. Permudah pelanggan.</HeroTitle>
+            <HeroTitle>Tingkatkan penjualan. Permudah pelanggan.</HeroTitle>
             <SectionDescription className="mt-8">
               Platform menu digital yang memungkinkan pelanggan memesan produkmu langsung melalui
               WhatsApp.

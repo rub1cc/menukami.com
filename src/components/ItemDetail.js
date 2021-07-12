@@ -72,29 +72,53 @@ export default function ItemDetail({ data, isShow, handleDismiss }) {
                     <div className="flex justify-end items-center bg-white">
                       {itemInCart ? (
                         <div className="space-x-4 flex items-center ">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            className="w-7 h-7 border border-gray-300 rounded-md p-1 text-blue-500 hover:border-gray-400 transition duration-300 cursor-pointer"
-                            onClick={() => decrement(id)}
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M20 12H4"
-                            />
-                          </svg>
+                          <span className=" border border-gray-300 rounded-md p-1 text-blue-500 hover:border-gray-400 flex items-center cursor-pointer">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              className="w-5 h-5 "
+                              onClick={() => decrement(id)}
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M20 12H4"
+                              />
+                            </svg>
+                          </span>
                           <span className="text-xl">{count}</span>
+                          <span className=" border border-gray-300 rounded-md p-1 text-blue-500 hover:border-gray-400 flex items-center cursor-pointer">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              className="w-5 h-5 "
+                              onClick={() => increment(id)}
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                              />
+                            </svg>
+                          </span>
+                        </div>
+                      ) : (
+                        <div
+                          className="border border-gray-300 rounded-md p-1 px-2 text-blue-500 hover:border-gray-400 flex items-center cursor-pointer transition duration-300 text-sm"
+                          onClick={handleAddItem}
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
-                            className="w-7 h-7 border border-gray-300 rounded-md p-1 text-blue-500 hover:border-gray-400 transition duration-300 cursor-pointer"
-                            onClick={() => increment(id)}
+                            className="h-5 w-5"
                           >
                             <path
                               strokeLinecap="round"
@@ -103,23 +127,8 @@ export default function ItemDetail({ data, isShow, handleDismiss }) {
                               d="M12 6v6m0 0v6m0-6h6m-6 0H6"
                             />
                           </svg>
+                          <span className="ml-1">Tambah</span>
                         </div>
-                      ) : (
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          className="w-7 h-7 border border-gray-300 rounded-md p-1 text-blue-500 hover:border-gray-400 transition duration-300 cursor-pointer"
-                          onClick={handleAddItem}
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                          />
-                        </svg>
                       )}
                     </div>
                   </div>

@@ -17,13 +17,22 @@ function ReviewOrder() {
     isShow: false,
   })
   const [deliveryAddress, setDeliveryAddress] = useState('')
+  const [note, setNote] = useState('')
   const totalCartPrice = cart.reduce((prev, next) => prev + next.subTotal, 0) || 0
   // const deliveryFsee = 0
   // const totalPrice = totalCartPrice + deliveryFee
-  const handleOrderButton = () =>
+  const menukamiStore = JSON.parse(localStorage.getItem('menukami_store'))
+
+  const handleOrderButton = () => {
+    if (menukamiStore.delivery && deliveryAddress.length < 7)
+      return alert('Harap mengisi alamat tujuan pengiriman dengan benar')
     window.open(
-      prepareWAMessage(cart, JSON.parse(localStorage.getItem('menukami_store')), deliveryAddress)
+      prepareWAMessage(cart, menukamiStore, {
+        note,
+        deliveryAddress,
+      })
     )
+  }
 
   function CartItem() {
     const { cart, decrement, increment } = useCart()
@@ -42,7 +51,7 @@ function ReviewOrder() {
                       className="text-sm text-blue-500 font-light inline focus:outline-none"
                       onClick={() => setNoteForm({ isShow: true, data: item })}
                     >
-                      Edit
+                      Ubah catatan
                     </button>
                   </span>
                 ) : (
@@ -133,8 +142,20 @@ function ReviewOrder() {
           <div className="py-4 px-4 bg-white">
             <p className="text-base font-semibold">Informasi Tambahan</p>
             <textarea
-              value={deliveryAddress}
+              value={note}
               placeholder="Beri catatan untuk penjual"
+              className="mt-2 w-full px-4 py-3 rounded-md focus:outline-none border"
+              onChange={(event) => setNote(event.target.value)}
+            />
+          </div>
+        ) : null}
+
+        {cart.length > 0 && menukamiStore.delivery ? (
+          <div className="py-4 px-4 bg-white">
+            <p className="text-base font-semibold">Alamat pengiriman</p>
+            <textarea
+              value={deliveryAddress}
+              placeholder="Tujuan pengiriman produk"
               className="mt-2 w-full px-4 py-3 rounded-md focus:outline-none border"
               onChange={(event) => setDeliveryAddress(event.target.value)}
             />

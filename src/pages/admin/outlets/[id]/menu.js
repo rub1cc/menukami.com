@@ -17,8 +17,8 @@ const MenuLink = ({ icon, onClick, text, desc, className }) => {
     >
       <span className="w-4 h-4 text-gray-500">{icon}</span>
       <div className="flex flex-col">
-        <span className="font-normal">{text}</span>
-        <span>{desc}</span>
+        <span className="font-medium">{text}</span>
+        <small className="text-gray-500">{desc}</small>
       </div>
     </div>
   )

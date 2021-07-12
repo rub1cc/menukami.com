@@ -10,6 +10,7 @@ import { useState } from 'react'
 import onClickOutside from 'react-onclickoutside'
 import { useQuery } from 'react-query'
 import { useToImage } from 'react-to-image'
+import { useClipboard } from 'use-clipboard-copy'
 
 const MenuLink = ({ icon, onClick, text, className }) => {
   return (
@@ -25,6 +26,10 @@ const MenuLink = ({ icon, onClick, text, className }) => {
 
 const Outlet = ({ item, index, showQr }) => {
   const router = useRouter()
+  const { copy, copied } = useClipboard({
+    copiedTimeout: 600, // timeout duration in milliseconds
+  })
+
   const Menu = () => {
     const [isOpen, setIsOpen] = useState(false)
     Menu.handleClickOutside = () => setIsOpen(false)
@@ -72,7 +77,7 @@ const Outlet = ({ item, index, showQr }) => {
                   </svg>
                 </span>
               }
-              text="Edit"
+              text="Edit outlet"
               onClick={() => router.push(`/admin/outlets/${item?.id}`)}
             />
             <MenuLink
@@ -94,7 +99,7 @@ const Outlet = ({ item, index, showQr }) => {
                   </svg>
                 </span>
               }
-              text="QR Code"
+              text="Lihat QR Code"
               onClick={() => {
                 setIsOpen(false)
                 showQr({ show: true, outlet: item })
@@ -122,27 +127,6 @@ const Outlet = ({ item, index, showQr }) => {
               onClick={() => router.push(`/${item?.slug}`)}
               className="border-t border-gray-300"
             />
-            <MenuLink
-              icon={
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-full w-full"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
-                  />
-                </svg>
-              }
-              text="Menu"
-              onClick={() => router.push(`/admin/outlets/${item?.id}/menu`)}
-              className="border-t border-gray-300"
-            />
           </div>
         </button>
       </div>
@@ -157,16 +141,35 @@ const Outlet = ({ item, index, showQr }) => {
   return (
     <div key={`outlet-${index}`}>
       <div className="bg-white md:rounded">
-        <span className="flex justify-between p-4">
+        <span className="flex space-x-4 p-4">
+          <img
+            src={item?.logo}
+            className="w-10 h-10 object-cover rounded-md"
+            alt={`${item?.name} logo`}
+          />
           <span className="flex flex-col">
-            <span className="font-normal">{item?.name}</span>
-            <span>{item?.location}</span>
-            <small>
-              <span className="text-gray-500">https://menukami.com/{item?.slug}</span>
-            </small>
+            <span className="font-medium">{item?.name}</span>
+            <small>{item?.location}</small>
+            <small className="text-gray-500">https://menukami.com/{item?.slug}</small>
           </span>
-          <EnhancedMenu />
         </span>
+        <div className="flex space-x-4 w-full px-4 pb-4 items-center">
+          <div className="flex space-x-2 w-full items-center">
+            <button
+              onClick={() => router.push(`/admin/outlets/${item?.id}/menu`)}
+              className={`flex flex-1 rounded border border-gray-200 hover:bg-gray-100 transition duration-300 text-center px-4 py-1 justify-between focus:outline-none text-sm bg-transparent`}
+            >
+              <div className="text-center w-full">Atur menu</div>
+            </button>
+            <button
+              onClick={() => copy(`https://menukami.com/${item?.slug}`)}
+              className={`flex flex-1 rounded border border-gray-200 hover:bg-gray-100 transition duration-300 text-center px-4 py-1 justify-between focus:outline-none text-sm bg-transparent`}
+            >
+              <div className="text-center w-full">{copied ? 'Copied' : 'Copy link'}</div>
+            </button>
+          </div>
+          <EnhancedMenu />
+        </div>
       </div>
     </div>
   )
