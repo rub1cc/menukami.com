@@ -1,11 +1,12 @@
 import * as classnames from 'classnames'
 import BackButton from 'components/BackButton'
+import FullScreenLoading from 'components/FullScreenLoading'
 import Header from 'components/Header'
 import NoteForm from 'components/NoteForm'
 import Price from 'components/Price'
 import { useCart } from 'context/cart-context'
 import MobileLayout from 'layouts/MobileLayout'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import formatToCurrency from 'utils/formatToCurrency'
 import prepareWAMessage from 'utils/prepareTextMessage'
 
@@ -18,10 +19,16 @@ function ReviewOrder() {
   })
   const [deliveryAddress, setDeliveryAddress] = useState('')
   const [note, setNote] = useState('')
+  const [menukamiStore, setMenukamiStore] = useState(null)
   const totalCartPrice = cart.reduce((prev, next) => prev + next.subTotal, 0) || 0
   // const deliveryFsee = 0
   // const totalPrice = totalCartPrice + deliveryFee
-  const menukamiStore = JSON.parse(localStorage.getItem('menukami_store'))
+
+  useEffect(() => setMenukamiStore(JSON.parse(localStorage.getItem('menukami_store'))), [])
+
+  if (!menukamiStore) {
+    return <FullScreenLoading />
+  }
 
   const handleOrderButton = () => {
     if (menukamiStore.delivery && deliveryAddress.length < 7)
