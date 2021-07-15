@@ -49,6 +49,7 @@ function Hero() {
                 src="/images/women-with-phone.jpeg"
                 alt=""
                 className="rounded-3xl w-full h-full object-cover transform"
+                style={{ transform: 'scaleX(-1)' }}
               />
             </div>
             <img
