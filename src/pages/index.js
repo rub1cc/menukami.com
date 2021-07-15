@@ -14,27 +14,36 @@ import {
   AiOutlinePlus,
   AiOutlineMinus,
 } from 'react-icons/ai'
+import Fade from 'react-reveal/Fade'
 
 function HeroTitle({ children, className }) {
   return (
-    <h1 className={`text-3xl md:text-5xl font-bold tracking-tight font-lpTitle ${className}`}>
-      {children}
-    </h1>
+    <Fade bottom>
+      <h1 className={`text-3xl md:text-5xl font-bold tracking-tight font-lpTitle ${className}`}>
+        {children}
+      </h1>
+    </Fade>
   )
 }
 
 function SectionTitle({ children, className }) {
   return (
-    <h2
-      className={`text-3xl md:text-4xl leading-tight font-bold tracking-tight text-center mb-24 font-lpTitle ${className}`}
-    >
-      {children}
-    </h2>
+    <Fade bottom>
+      <h2
+        className={`text-3xl md:text-4xl leading-tight font-bold tracking-tight text-center mb-24 font-lpTitle ${className}`}
+      >
+        {children}
+      </h2>
+    </Fade>
   )
 }
 
 function SectionDescription({ children, className }) {
-  return <h3 className={`text-sm md:text-xl text-gray-600 ${className}`}>{children}</h3>
+  return (
+    <Fade bottom>
+      <h3 className={`text-sm md:text-xl text-gray-600 ${className}`}>{children}</h3>
+    </Fade>
+  )
 }
 
 function Hero() {
@@ -45,18 +54,21 @@ function Hero() {
         <div className="md:flex py-12 ">
           <div className="md:w-1/2 md:py-12 pl-16 md:pl-32 relative md:hidden">
             <div className="w-full">
-              <img
-                src="/images/women-with-phone.jpeg"
-                alt=""
-                className="rounded-3xl w-full h-full object-cover transform"
-                style={{ transform: 'scaleX(-1)' }}
-              />
+              <Fade right>
+                <img
+                  src="/images/women-with-phone.jpeg"
+                  alt=""
+                  className="rounded-3xl w-full h-full object-cover transform"
+                />
+              </Fade>
             </div>
-            <img
-              src="/images/cacastore-screenshot.png"
-              alt=""
-              className="absolute top-0 left-0 w-32 md:w-48 mt-16 md:mt-32 transform shadow-2xl rounded-xl"
-            />
+            <Fade bottom>
+              <img
+                src="/images/cacastore-screenshot.png"
+                alt=""
+                className="absolute top-0 left-0 w-32 md:w-48 mt-16 md:mt-32 transform shadow-2xl rounded-xl"
+              />
+            </Fade>
           </div>
           <div className="md:w-1/2 md:px-12 flex flex-col justify-center relative mt-12 md:mt-0">
             <HeroTitle>Jualan Online</HeroTitle>
@@ -65,57 +77,60 @@ function Hero() {
               Platform pembuatan katalog produk online yang memungkinkan pelanggan memesan produkmu
               langsung melalui WhatsApp.
             </SectionDescription>
-            <div className="flex flex-col space-y-4 md:space-y-0 md:flex-row md:items-center md:space-x-4 mt-8">
-              <button
-                className="text-left flex items-center space-x-4 border border-blue-500 bg-blue-500 px-6 py-3 rounded-md text-white justify-between"
-                onClick={() => router.push('/admin')}
-              >
-                <span>Buat Menu</span>
-                <span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </span>
-              </button>
-              <button
-                className="text-left flex items-center space-x-4 border text-blue-500 border-blue-500 px-6 py-3 rounded-md justify-between"
-                onClick={() => router.push('/cacastore')}
-              >
-                <span>Lihat Demo</span>
-                <span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </span>
-              </button>
-            </div>
+            <Fade delay={300}>
+              <div className="flex flex-col space-y-4 md:space-y-0 md:flex-row md:items-center md:space-x-4 mt-8">
+                <button
+                  className="text-left flex items-center space-x-4 border border-blue-500 bg-blue-500 px-6 py-3 rounded-md text-white justify-between"
+                  onClick={() => router.push('/admin')}
+                >
+                  <span>Buat Menu</span>
+                  <span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </span>
+                </button>
+                <button
+                  className="text-left flex items-center space-x-4 border text-blue-500 border-blue-500 px-6 py-3 rounded-md justify-between"
+                  onClick={() => router.push('/cacastore')}
+                >
+                  <span>Lihat Demo</span>
+                  <span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </div>
+            </Fade>
           </div>
           <div className="md:w-1/2 md:py-12 pl-16 md:pl-32 relative hidden md:block">
             <div className="w-full">
-              <img
-                src="/images/women-with-phone.jpeg"
-                alt=""
-                className="rounded-3xl w-full h-full object-cover transform"
-                style={{ transform: 'scaleX(-1)' }}
-              />
+              <Fade right>
+                <img
+                  src="/images/women-with-phone.jpeg"
+                  alt=""
+                  className="rounded-3xl w-full h-full object-cover transform"
+                />
+              </Fade>
             </div>
             <img
               src="/images/cacastore-screenshot.png"
@@ -134,8 +149,12 @@ const Feature = () => {
     <div className="p-4 rounded-md">
       <div className="w-20 h-20 rounded-full bg-white flex justify-center items-center">{icon}</div>
       <div className="mt-8">
-        <p className="text-xl font-bold mb-2 font-lpTitle">{title}</p>
-        <p className="text-gray-600">{description}</p>
+        <Fade bottom>
+          <p className="text-xl font-bold mb-2 font-lpTitle">{title}</p>
+        </Fade>
+        <Fade bottom delay={100}>
+          <p className="text-gray-600">{description}</p>
+        </Fade>
       </div>
     </div>
   )
@@ -186,22 +205,24 @@ const Pricing = () => {
     <div>
       <DesktopLayout className="py-12 md:pt-20 md:pb-24">
         <SectionTitle>Harga</SectionTitle>
-        <div className="max-w-sm mx-auto bg-gray-800 rounded-2xl text-white">
-          <div className="p-12 rounded-md">
-            <div>
-              <p className="text-3xl font-bold mb-8">Gratis</p>
-              <p className="text-gray-300">
-                Nikmati akses penuh ke semua fitur MenuKami. Tanpa biaya langgan dan tanpa komisi.
-              </p>
+        <Fade bottom delay={100}>
+          <div className="max-w-sm mx-auto bg-gray-800 rounded-2xl text-white">
+            <div className="p-12 rounded-md">
+              <div>
+                <p className="text-3xl font-bold mb-8">Gratis</p>
+                <p className="text-gray-300">
+                  Nikmati akses penuh ke semua fitur MenuKami. Tanpa biaya langgan dan tanpa komisi.
+                </p>
+              </div>
+              <button
+                className="w-full bg-blue-500 px-6 py-3 rounded-full text-white mt-32"
+                onClick={() => router.push('/admin')}
+              >
+                <span>Coba Sekarang</span>
+              </button>
             </div>
-            <button
-              className="w-full bg-blue-500 px-6 py-3 rounded-full text-white mt-32"
-              onClick={() => router.push('/admin')}
-            >
-              <span>Coba Sekarang</span>
-            </button>
           </div>
-        </div>
+        </Fade>
       </DesktopLayout>
     </div>
   )
@@ -210,13 +231,17 @@ const Pricing = () => {
 const Steps = () => {
   const StepItem = ({ number, title, description }) => (
     <div className="p-4 rounded-md">
-      <div className="mt-8 flex space-x-4">
-        <div className="font-bold text-blue-500 rounded-md text-5xl">{number}</div>
-        <div>
-          <p className="text-xl font-bold mb-2 font-lpTitle relative">{title}</p>
-          <p className="text-gray-600 relative">{description}</p>
+      <Fade bottom>
+        <div className="mt-8 flex space-x-4">
+          <div className="font-bold text-blue-500 rounded-md text-5xl">{number}</div>
+          <div>
+            <p className="text-xl font-bold mb-2 font-lpTitle relative">{title}</p>
+            <Fade bottom delay={100}>
+              <p className="text-gray-600 relative">{description}</p>
+            </Fade>
+          </div>
         </div>
-      </div>
+      </Fade>
     </div>
   )
   return (
@@ -243,15 +268,21 @@ const Steps = () => {
 const AppInfo = () => {
   const InfoText = ({ title, description }) => (
     <div className="w-full md:w-2/5">
-      <h2 className="text-3xl leading-tight font-bold tracking-tight font-lpTitle">{title}</h2>
-      <SectionDescription className="mt-8">{description}</SectionDescription>
+      <Fade bottom>
+        <h2 className="text-3xl leading-tight font-bold tracking-tight font-lpTitle">{title}</h2>
+      </Fade>
+      <Fade bottom delay={100}>
+        <SectionDescription className="mt-8">{description}</SectionDescription>
+      </Fade>
     </div>
   )
 
   const InfoImage = ({ src, className }) => (
-    <div className={`w-full md:w-3/5 ${className} flex items-center justify-center`}>
-      <img src={src} alt="" className="rounded-3xl w-full h-full object-cover transform" />
-    </div>
+    <Fade delay={300}>
+      <div className={`w-full md:w-3/5 ${className} flex items-center justify-center`}>
+        <img src={src} alt="" className="rounded-3xl w-full h-full object-cover transform" />
+      </div>
+    </Fade>
   )
 
   const Info1 = () => (
@@ -301,20 +332,22 @@ const AppInfo = () => {
 
 const Question = ({ text, answer, onClick, isShow }) => {
   return (
-    <div>
-      <div
-        className="flex justify-between items-center border-b border-gray-200 py-4 cursor-pointer w-full"
-        onClick={onClick}
-      >
-        <p className="font-lpTitle font-bold text-xl">{text}</p>
-        {isShow ? (
-          <AiOutlineMinus className="w-5 h-5 text-gray-800" />
-        ) : (
-          <AiOutlinePlus className="w-5 h-5 text-gray-800" />
-        )}
+    <Fade bottom>
+      <div>
+        <div
+          className="flex justify-between items-center border-b border-gray-200 py-4 cursor-pointer w-full"
+          onClick={onClick}
+        >
+          <p className="font-lpTitle font-bold text-xl">{text}</p>
+          {isShow ? (
+            <AiOutlineMinus className="w-5 h-5 text-gray-800" />
+          ) : (
+            <AiOutlinePlus className="w-5 h-5 text-gray-800" />
+          )}
+        </div>
+        {isShow ? <p className="py-4 text-gray-600">{answer}</p> : null}
       </div>
-      {isShow ? <p className="py-4 text-gray-600">{answer}</p> : null}
-    </div>
+    </Fade>
   )
 }
 
