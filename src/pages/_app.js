@@ -16,6 +16,7 @@ function MyApp({ Component, pageProps }) {
         <CartProvider>
           <Head>
             <link rel="icon" href="/favicon.ico" />
+            <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
             <script async src="https://www.googletagmanager.com/gtag/js?id=G-BYEHHMNDC3"></script>
             <script
               dangerouslySetInnerHTML={{

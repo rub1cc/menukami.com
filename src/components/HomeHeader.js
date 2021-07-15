@@ -22,7 +22,7 @@ function HomeHeader() {
         <div className="flex justify-between py-5">
           <button className="text-2xl flex items-center space-x-3" onClick={() => router.push('/')}>
             <Logo />
-            <span className="font-bold" style={{ letterSpacing: '-3px' }}>
+            <span className="font-bold font-sans" style={{ letterSpacing: '-3px' }}>
               menukami
             </span>
           </button>

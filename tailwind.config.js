@@ -10,6 +10,8 @@ module.exports = {
     },
     fontFamily: {
       sans: ['Karla', ...defaultTheme.fontFamily.sans],
+      lpBody: ['Inter var', ...defaultTheme.fontFamily.sans],
+      lpTitle: ['Montserrat', ...defaultTheme.fontFamily.sans],
     },
     extend: {},
   },
