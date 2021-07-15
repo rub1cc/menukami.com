@@ -8,7 +8,7 @@ function HomeFooter() {
   return (
     <div className="py-12 md:py-24 bg-gray-800 text-white">
       <DesktopLayout>
-        <div className="bg-gray-900 p-24 rounded-lg -mt-48 mb-8 flex justify-between">
+        <div className="bg-gray-900 p-12 md:p-24 rounded-lg -mt-48 mb-8 flex flex-col md:flex-row justify-between mx-4 md:mx-0">
           <div className="pr-4">
             <p className="text-3xl font-bold">Buat menu kamu sekarang, gratis!</p>
             <p className="text-gray-300">
@@ -16,13 +16,13 @@ function HomeFooter() {
             </p>
           </div>
           <button
-            className="text-left flex items-center space-x-4 border border-blue-500 bg-blue-500 px-6 py-3 rounded-md text-white justify-between"
+            className="text-left flex items-center space-x-4 border border-blue-500 bg-blue-500 px-6 py-3 rounded-md text-white justify-between mt-8 md:mt-0"
             onClick={() => router.push('/admin')}
           >
             <span>Buat Menu</span>
           </button>
         </div>
-        <div className="flex justify-between py-5">
+        <div className="flex justify-between py-5 mx-4 md:mx-0">
           <button className="text-2xl flex items-center space-x-3" onClick={() => router.push('/')}>
             <Logo />
             <span className="font-bold text-white font-sans" style={{ letterSpacing: '-3px' }}>
