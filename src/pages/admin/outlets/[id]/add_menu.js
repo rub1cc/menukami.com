@@ -10,6 +10,7 @@ import 'react-circular-progressbar/dist/styles.css'
 import Dropzone from 'react-dropzone'
 import { useMutation, useQuery } from 'react-query'
 import Select from 'react-select'
+import calculateDiscountPercentage from 'utils/calculateDiscountPercentage'
 import { storage } from 'utils/firebaseClient'
 import validations from 'utils/validations'
 
@@ -366,7 +367,14 @@ function App() {
                                 htmlFor="company_website"
                                 className="block text-sm font-medium text-gray-700"
                               >
-                                Harga Diskon
+                                Harga Diskon{' '}
+                                {values.sale_price && values.price ? (
+                                  <span className="bg-red-100 text-red-500 px-1 rounded">
+                                    -{calculateDiscountPercentage(values.price, values.sale_price)}%
+                                  </span>
+                                ) : (
+                                  <span className="text-gray-400">(opsional)</span>
+                                )}
                               </label>
                               <div className="mt-1 flex rounded-md shadow-sm">
                                 <input

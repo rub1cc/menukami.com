@@ -15,6 +15,7 @@ import DefaultErrorPage from 'next/error'
 import FullScreenLoading from 'components/FullScreenLoading'
 import RippleButton from 'components/RippleButton'
 import { CircularProgressbar } from 'react-circular-progressbar'
+import calculateDiscountPercentage from 'utils/calculateDiscountPercentage'
 
 const FileUpload = () => {
   const { values, setFieldValue } = useFormikContext()
@@ -433,7 +434,14 @@ function App() {
                                 htmlFor="company_website"
                                 className="block text-sm font-medium text-gray-700"
                               >
-                                Harga Diskon
+                                Harga Diskon{' '}
+                                {values.sale_price && values.price ? (
+                                  <span className="bg-red-100 text-red-500 px-1 rounded">
+                                    -{calculateDiscountPercentage(values.price, values.sale_price)}%
+                                  </span>
+                                ) : (
+                                  <span className="text-gray-400">(opsional)</span>
+                                )}
                               </label>
                               <div className="mt-1 flex rounded-md shadow-sm">
                                 <input

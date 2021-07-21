@@ -7,6 +7,15 @@ import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { supabase } from 'utils/supabaseClient'
 
+const track = (id, unique) =>
+  fetch('/api/track/addView', {
+    method: 'post',
+    body: JSON.stringify({
+      outlet_id: id,
+      unique,
+    }),
+  })
+
 function Menu({ data, categories }) {
   const [tab, setTab] = useState('product')
 
@@ -20,6 +29,16 @@ function Menu({ data, categories }) {
         phone: data.phone.startsWith('62') ? data.phone : '62' + data.phone,
       })
     )
+    const visited = JSON.parse(localStorage.getItem('menukami_visited'))
+    const exists = visited?.includes(data?.id)
+    if (visited == null) {
+      localStorage.setItem('menukami_visited', JSON.stringify([data?.id]))
+    } else {
+      if (!exists) {
+        localStorage.setItem('menukami_visited', JSON.stringify(visited.concat(data?.id)))
+      }
+    }
+    track(data?.id, !exists)
   }, [])
 
   return (

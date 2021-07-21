@@ -1,4 +1,4 @@
-import { withPageAuthRequired } from '@auth0/nextjs-auth0/dist/frontend'
+import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0/dist/frontend'
 import FullScreenLoading from 'components/FullScreenLoading'
 import Header from 'components/Header'
 import Logo from 'components/Logo'
@@ -7,6 +7,7 @@ import RippleButton from 'components/RippleButton'
 import MobileLayout from 'layouts/MobileLayout'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import { HiTrendingUp } from 'react-icons/hi'
 import onClickOutside from 'react-onclickoutside'
 import { useQuery } from 'react-query'
 import { useToImage } from 'react-to-image'
@@ -59,6 +60,11 @@ const Outlet = ({ item, index, showQr }) => {
             className={`bg-white absolute right-0 top-0 rounded border border-gray-200 transition-all duration-300 transform origin-top-right w-48 ${menuClass}`}
           >
             <MenuLink
+              icon={<HiTrendingUp />}
+              text="Statistik"
+              onClick={() => router.push(`/admin/outlets/${item?.id}/stats`)}
+            />
+            <MenuLink
               icon={
                 <span className="w-4 h-4 text-gray-500">
                   <svg
@@ -79,6 +85,7 @@ const Outlet = ({ item, index, showQr }) => {
               }
               text="Edit outlet"
               onClick={() => router.push(`/admin/outlets/${item?.id}`)}
+              className="border-t border-gray-300"
             />
             <MenuLink
               icon={
@@ -177,6 +184,7 @@ const Outlet = ({ item, index, showQr }) => {
 
 function Admin() {
   const router = useRouter()
+  const { user } = useUser()
   const { ref, getPng } = useToImage()
 
   const { data, isLoading } = useQuery('getMyOutlets', () =>
@@ -240,34 +248,58 @@ function Admin() {
       <Header title={null} leftComponent={<Logo />} rightComponent={<LogoutButton />} />
       <div className="space-y-4">
         <MobileLayout>
-          <div className="flex flex-col space-y-4">
-            {data.length > 0 ? (
-              data.map((item, index) => (
-                <Outlet item={item} index={index} key={item.id} showQr={setQr} />
-              ))
-            ) : (
-              <button
-                className="flex space-x-2 justify-center items-center border-2 border-dashed bg-gray-100 p-4 rounded border-gray-300 hover:border-gray-500 text-gray-500  mx-4 md:mx-0 transition duration-300"
-                onClick={() => router.push('/admin/outlets/add')}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+          {user.email_verified ? (
+            <div className="flex flex-col space-y-4">
+              {data.length > 0 ? (
+                data.map((item, index) => (
+                  <Outlet item={item} index={index} key={item.id} showQr={setQr} />
+                ))
+              ) : (
+                <button
+                  className="flex space-x-2 justify-center items-center border-2 border-dashed bg-gray-100 p-4 rounded border-gray-300 hover:border-gray-500 text-gray-500  mx-4 md:mx-0 transition duration-300"
+                  onClick={() => router.push('/admin/outlets/add')}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <p>Tambah outlet</p>
-              </button>
-            )}
-          </div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <p>Tambah outlet</p>
+                </button>
+              )}
+            </div>
+          ) : (
+            <div className="bg-white p-4 mx-4 md:mx-0">
+              <p className="text-xl font-bold">Verifikasi Email Anda</p>
+              <p className="text-gray-500 mt-4">
+                Kami telah mengirimkan link untuk verifikasi ke email{' '}
+                <span className="text-blue-500">{user.email}</span>
+              </p>
+              <p className="text-gray-500 mt-4">
+                Jika Anda tidak menerima email verifikasi mohon hubungi kami melalui{' '}
+                <a className="underline" href="https://twitter.com/menukami">
+                  Twitter
+                </a>
+                ,{' '}
+                <a className="underline" href="https://instagram.com/getmenukami">
+                  Instagram
+                </a>{' '}
+                atau email ke{' '}
+                <a className="underline" href="mailto:cs@menukami.com">
+                  cs@menukami.com
+                </a>
+              </p>
+            </div>
+          )}
         </MobileLayout>
       </div>
     </div>

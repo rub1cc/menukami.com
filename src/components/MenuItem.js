@@ -3,6 +3,7 @@ import { useState } from 'react'
 import ItemDetail from './ItemDetail'
 import Price from './Price'
 import SimpleReactLightbox from 'simple-react-lightbox'
+import calculateDiscountPercentage from 'utils/calculateDiscountPercentage'
 
 export default function MenuItem({ data }) {
   const { cart } = useCart()
@@ -35,7 +36,7 @@ export default function MenuItem({ data }) {
     )
   }
 
-  const { name, image } = data
+  const { name, image, price, sale_price } = data
 
   const currItem = cart.find((item) => item.id === data.id)
 
@@ -44,10 +45,25 @@ export default function MenuItem({ data }) {
   return (
     <>
       <button
-        className="group flex flex-col space-x-3 border border-transparent w-full focus:outline-none  overflow-hidden"
+        className="group flex flex-col space-x-3 border border-transparent w-full focus:outline-none overflow-hidden rounded-md"
         onClick={() => setShowItemDetail(true)}
       >
-        <div className="w-full h-56 overflow-hidden rounded-md">
+        <div className="w-full h-56 overflow-hidden rounded-md relative">
+          {sale_price ? (
+            <span className="text-white absolute top-0 right-2 md:right-3 z-10 flex flex-col">
+              <div className="flex flex-col bg-red-500 font-bold text-sm pt-1">
+                <span>{calculateDiscountPercentage(price, sale_price)}%</span>
+                <small className="-mt-2 opacity-75">OFF</small>
+              </div>
+              <div
+                style={{
+                  borderLeft: '18px solid transparent',
+                  borderRight: '18px solid transparent',
+                  borderTop: '10px solid rgb(239, 68, 68)',
+                }}
+              ></div>
+            </span>
+          ) : null}
           <img
             src={image}
             alt={name}

@@ -83,7 +83,7 @@ function Hero() {
                   className="text-left flex items-center space-x-4 border border-blue-500 bg-blue-500 px-6 py-3 rounded-md text-white justify-between"
                   onClick={() => router.push('/admin')}
                 >
-                  <span>Buat Menu</span>
+                  <span>Buat Menu Gratis</span>
                   <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -366,6 +366,11 @@ const FAQ = () => {
     {
       question: 'Harganya berapa?',
       answer: 'Gratis. Kamu tidak perlu membayar biaya apapun.',
+    },
+    {
+      question: 'Apakah memerlukan aplikasi tambahan?',
+      answer:
+        'Penjual ataupun pembeli tidak perlu menginstall aplikasi tambahan. Menukami dapat diakses melalui browser.',
     },
   ]
 
