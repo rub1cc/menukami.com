@@ -3,14 +3,13 @@ import DesktopLayout from 'layouts/DesktopLayout'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
-import Logo from './Logo'
 import onClickOutside from 'react-onclickoutside'
-import { AiOutlineLogout, AiOutlineShop } from 'react-icons/ai'
+import Logo from './Logo'
 
 const MenuLink = ({ icon, href, text, className }) => {
   return (
     <a
-      className={`flex space-x-2 items-center hover:text-gray-900 w-full py-2 px-4 ${className}`}
+      className={`flex space-x-2 items-center hover:text-gray-900 w-full p-2 ${className} hover:bg-gray-100`}
       href={href}
     >
       <span>{icon}</span>
@@ -37,18 +36,21 @@ const Menu = () => {
           />
         </button>
         <div
-          className={`bg-white absolute right-0 top-full mt-2 rounded-lg border border-gray-100 shadow-xl transition-all duration-300 transform origin-top-right w-48 py-2 ${menuClass}`}
+          className={`bg-white absolute right-0 top-full mt-2 rounded-lg border border-gray-100 shadow-xl transition-all duration-300 transform origin-top-right w-72 ${menuClass}`}
         >
-          <MenuLink
-            icon={<AiOutlineShop className="w-5 h-5 text-gray-400" />}
-            text="Outletku"
-            href="/admin"
-          />
-          <MenuLink
-            icon={<AiOutlineLogout className="w-5 h-5 text-gray-400" />}
-            text="Log Out"
-            href="/api/auth/logout"
-          />
+          <div className="p-4 flex items-center space-x-2">
+            <img
+              src={user.picture}
+              className="w-10 h-10 rounded-full border-2 border-gray-300"
+              alt={`Profile`}
+            />
+            <div className="flex flex-col truncate">
+              <span className="text-left font-bold">{user.username ?? user.name}</span>
+              <span className="text-left truncate">{user.email}</span>
+            </div>
+          </div>
+          <MenuLink text="Outletku" href="/admin" />
+          <MenuLink text="Log out" href="/api/auth/logout" className="border-t border-gray-100" />
         </div>
       </button>
     </div>
