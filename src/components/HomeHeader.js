@@ -38,7 +38,7 @@ const Menu = () => {
         <div
           className={`bg-white absolute right-0 top-full mt-2 rounded-lg border border-gray-100 shadow-xl transition-all duration-300 transform origin-top-right w-72 ${menuClass}`}
         >
-          <div className="p-4 flex items-center space-x-2">
+          <div className="p-4 flex items-start space-x-2">
             <img
               src={user.picture}
               className="w-10 h-10 rounded-full border-2 border-gray-300"
@@ -47,6 +47,11 @@ const Menu = () => {
             <div className="flex flex-col truncate">
               <span className="text-left font-bold">{user.username ?? user.name}</span>
               <span className="text-left truncate">{user.email}</span>
+              {user.email_verified ? (
+                <small className="bg-yellow-100 text-yellow-500 text-center rounded-full px-3 py-1 mt-2 text-xs">
+                  Email not verified
+                </small>
+              ) : null}
             </div>
           </div>
           <MenuLink text="Outletku" href="/admin" />

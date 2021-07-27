@@ -12,7 +12,7 @@ function HomeFooter() {
           <div className="pr-4">
             <p className="text-3xl font-bold">Buat menu kamu sekarang, gratis!</p>
             <p className="text-gray-300 mt-2">
-              Nikmati akses penuh ke semua fitur MenuKami. Tanpa biaya langgan dan tanpa komisi.
+              Nikmati akses penuh ke semua fitur MenuKami. Tanpa biaya langganan dan tanpa komisi.
             </p>
           </div>
           <button

@@ -209,9 +209,11 @@ const Pricing = () => {
           <div className="max-w-sm mx-auto bg-gray-800 rounded-2xl text-white">
             <div className="p-12 rounded-md">
               <div>
-                <p className="text-3xl font-bold mb-8">Gratis</p>
+                <p className="font-bold text-gray-300 mb-8">Personal</p>
+                <p className="text-4xl font-bold mb-8">Gratis</p>
                 <p className="text-gray-300">
-                  Nikmati akses penuh ke semua fitur MenuKami. Tanpa biaya langgan dan tanpa komisi.
+                  Nikmati akses penuh ke semua fitur MenuKami. Tanpa biaya langganan dan tanpa
+                  komisi.
                 </p>
               </div>
               <button

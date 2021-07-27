@@ -278,14 +278,14 @@ function Admin() {
               )}
             </div>
           ) : (
-            <div className="bg-white p-4 mx-4 md:mx-0">
-              <p className="text-xl font-bold">Verifikasi Email Anda</p>
+            <div className="bg-white p-4 mx-4 md:mx-0 dark:bg-gray-800">
+              <p className="text-xl font-bold">Verifikasi email kamu</p>
               <p className="text-gray-500 mt-4">
                 Kami telah mengirimkan link untuk verifikasi ke email{' '}
                 <span className="text-blue-500">{user.email}</span>
               </p>
               <p className="text-gray-500 mt-4">
-                Jika Anda tidak menerima email verifikasi mohon hubungi kami melalui{' '}
+                Jika kamu tidak menerima email verifikasi mohon hubungi kami melalui{' '}
                 <a className="underline" href="https://twitter.com/menukami">
                   Twitter
                 </a>
