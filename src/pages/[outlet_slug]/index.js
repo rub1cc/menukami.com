@@ -5,16 +5,10 @@ import StoreDetail from 'components/StoreDetail'
 import MobileLayout from 'layouts/MobileLayout'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
+import trackEvent from 'utils/trackEvent'
 import { supabase } from 'utils/supabaseClient'
 
-const track = (id, unique) =>
-  fetch('/api/track/addView', {
-    method: 'post',
-    body: JSON.stringify({
-      outlet_id: id,
-      unique,
-    }),
-  })
+const track = (id, unique) => trackEvent({ outlet_id: id, unique, event: 'page-view' })
 
 function Menu({ data, categories }) {
   const [tab, setTab] = useState('product')
@@ -23,6 +17,7 @@ function Menu({ data, categories }) {
     localStorage.setItem(
       'menukami_store',
       JSON.stringify({
+        id: data?.id,
         name: data?.name,
         slug: data?.slug,
         delivery: data?.delivery,
@@ -46,18 +41,21 @@ function Menu({ data, categories }) {
       <Head>
         <title>{data.name} - Menukami</title>
         <meta name="title" content={`${data.name} - Menukami`} />
-        <meta name="description" content={data.description} />
+        <meta name="description" content={data.description.replace(/(<([^>]+)>)/gi, '')} />
 
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`https://menukami.com/${data.slug}`} />
         <meta property="og:title" content={`${data.name} - Menukami`} />
-        <meta property="og:description" content={data.description} />
+        <meta property="og:description" content={data.description.replace(/(<([^>]+)>)/gi, '')} />
         <meta property="og:image" content={data.logo} />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content={`https://menukami.com/${data.slug}`} />
         <meta property="twitter:title" content={`${data.name} - Menukami`} />
-        <meta property="twitter:description" content={data.description} />
+        <meta
+          property="twitter:description"
+          content={data.description.replace(/(<([^>]+)>)/gi, '')}
+        />
         <meta property="twitter:image" content={data.logo} />
       </Head>
       <main className="flex flex-col w-full h-screen bg-white">

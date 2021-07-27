@@ -6,10 +6,10 @@ export default async function handler(req, res) {
       {
         ...JSON.parse(req.body),
         created_at: new Date(),
-        params: { request_headers: req.headers },
+        headers: { request_headers: req.headers },
       },
     ]
-    const { data, error } = await supabase.from('outlet-view').insert(columns)
+    const { data, error } = await supabase.from('eventLog').insert(columns)
     if (data) {
       res.status(200).json({ ok: true })
     } else {

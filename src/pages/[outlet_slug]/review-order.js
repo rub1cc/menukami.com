@@ -7,6 +7,7 @@ import Price from 'components/Price'
 import { useCart } from 'context/cart-context'
 import MobileLayout from 'layouts/MobileLayout'
 import React, { useEffect, useState } from 'react'
+import trackEvent from 'utils/trackEvent'
 import formatToCurrency from 'utils/formatToCurrency'
 import prepareWAMessage from 'utils/prepareTextMessage'
 
@@ -33,12 +34,16 @@ function ReviewOrder() {
   const handleOrderButton = () => {
     if (menukamiStore.delivery && deliveryAddress.length < 7)
       return alert('Harap mengisi alamat tujuan pengiriman dengan benar')
-    window.open(
-      prepareWAMessage(cart, menukamiStore, {
-        note,
-        deliveryAddress,
-      })
-    )
+    const message = prepareWAMessage(cart, menukamiStore, {
+      note,
+      deliveryAddress,
+    })
+    trackEvent({
+      outlet_id: menukamiStore.id,
+      event: 'checkout',
+      params: { cart, note, deliveryAddress },
+    })
+    window.open(message)
   }
 
   function CartItem() {

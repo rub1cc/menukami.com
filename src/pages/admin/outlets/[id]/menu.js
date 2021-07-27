@@ -47,12 +47,12 @@ const Product = ({ item, index }) => {
   return (
     <div key={`menu-${index}`}>
       <div className="bg-white md:rounded flex space-x-4">
-        <div className="p-4 border border-gray-200 rounded-md">
-          <img src={item.image} alt="" className="w-10 h-10 object-cover" />
+        <div className="w-14 md:w-20 h-14 md:h-20 border border-gray-200 rounded-md">
+          <img src={item.image} alt="" className="w-full h-full object-cover" />
         </div>
         <div>
           <span className="font-normal text-left">{item?.name}</span>
-          <Price data={item} />
+          <Price data={item} className="space-x-2" />
           <button
             className="text-blue-500 text-left"
             onClick={() => router.push(`/admin/outlets/${id}/menu/${item.id}`)}
