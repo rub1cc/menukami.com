@@ -47,7 +47,7 @@ const Menu = () => {
             <div className="flex flex-col truncate">
               <span className="text-left font-bold">{user.username ?? user.name}</span>
               <span className="text-left truncate">{user.email}</span>
-              {user.email_verified ? (
+              {!user.email_verified ? (
                 <small className="bg-yellow-100 text-yellow-500 text-center rounded-full px-3 py-1 mt-2 text-xs">
                   Email not verified
                 </small>
