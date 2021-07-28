@@ -59,6 +59,7 @@
     "g-sheets-api": "^1.4.1",
     "husky": "^4.3.0",
     "lint-staged": "^10.4.2",
+    "next-sitemap": "^1.6.140",
     "prettier": "^2.1.2",
     "tailwindcss": "^2.2.4"
   },
