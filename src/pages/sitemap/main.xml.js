@@ -21,7 +21,7 @@ export const getServerSideProps = async ({ res }) => {
         'api',
         'privacy.js',
         'index.js',
-        'sitemap.xml.js',
+        'sitemap',
       ].includes(staticPage)
     })
     .map((staticPagePath) => {
