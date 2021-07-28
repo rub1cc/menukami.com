@@ -19,7 +19,7 @@ export const getServerSideProps = async (ctx) => {
     },
     ...data.map(({ slug, updated_at }) => ({
       loc: `${baseUrl}/${slug}`, // Absolute url
-      lastmod: updated_at,
+      lastmod: new Date(updated_at).toISOString(),
       changefreq: 'weekly',
       priority: '0.9',
     })),
