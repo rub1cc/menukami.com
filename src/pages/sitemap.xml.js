@@ -14,7 +14,7 @@ export const getServerSideProps = async (ctx) => {
     {
       loc: baseUrl, // Absolute url
       lastmod: new Date().toISOString(),
-      changefreq: 'weekly',
+      changefreq: 'monthly',
       priority: '1.0',
     },
     ...data.map(({ slug, updated_at }) => ({
