@@ -2,17 +2,22 @@
 
 import { supabase } from 'utils/supabaseClient'
 import { getSession } from '@auth0/nextjs-auth0'
+import buildQuery from 'utils/buildQuery'
 
 export default async function handler(req, res) {
   const { user } = getSession(req, res)
 
   // get all data
   if (req.method == 'GET') {
-    let { data, error } = await supabase
-      .from('category')
-      .select('*')
-      .eq('outlet_id', req.query.id)
-      .eq('user_id', user.sub)
+    let { data, error } = buildQuery(
+      user,
+      await supabase.from('category').select('*').eq('outlet_id', req.query.id),
+      await supabase
+        .from('category')
+        .select('*')
+        .eq('outlet_id', req.query.id)
+        .eq('user_id', user.sub)
+    )
     if (data) {
       res.status(200).json(data)
     } else {

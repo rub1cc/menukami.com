@@ -49,8 +49,13 @@ export default function MenuItem({ data }) {
         onClick={() => setShowItemDetail(true)}
       >
         <div className="w-full h-56 overflow-hidden rounded-md relative">
+          <img
+            src={image}
+            alt={name}
+            className="w-full h-full object-cover rounded-md transform group-hover:scale-150"
+          />
           {sale_price ? (
-            <span className="text-white absolute top-0 right-2 md:right-3 z-10 flex flex-col">
+            <span className="text-white absolute top-0 right-2 md:right-3 flex flex-col">
               <div className="flex flex-col bg-red-500 font-bold text-sm pt-1">
                 <span>{calculateDiscountPercentage(price, sale_price)}%</span>
                 <small className="-mt-2 opacity-75">OFF</small>
@@ -64,11 +69,6 @@ export default function MenuItem({ data }) {
               ></div>
             </span>
           ) : null}
-          <img
-            src={image}
-            alt={name}
-            className="w-full h-full object-cover rounded-md transform group-hover:scale-150"
-          />
         </div>
         <div className="flex flex-col justify-between text-left w-full">
           <div className="py-2">

@@ -31,7 +31,7 @@ const Stat = ({ title, count, chartData }) => (
 
 function App() {
   const router = useRouter()
-  const { data, isLoading } = useQuery('getMyOutletStats', () =>
+  const { data, isLoading } = useQuery(['getMyOutletStats', router.query.id], () =>
     fetch('/api/track/getView/' + router.query.id).then((res) => res.json())
   )
   if (isLoading) {

@@ -27,7 +27,7 @@ const Menu = () => {
 
   return (
     <div className="flex items-start relative z-50">
-      <button className="focus:outline-none text-gray-600">
+      <div className="focus:outline-none text-gray-600">
         <button onClick={() => setIsOpen((old) => !old)} className="flex items-center space-x-4">
           <img
             src={user.picture}
@@ -57,7 +57,7 @@ const Menu = () => {
           <MenuLink text="Outletku" href="/admin" />
           <MenuLink text="Log out" href="/api/auth/logout" className="border-t border-gray-100" />
         </div>
-      </button>
+      </div>
     </div>
   )
 }

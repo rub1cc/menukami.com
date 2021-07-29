@@ -10,6 +10,7 @@ import { CircularProgressbar } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
 import Dropzone from 'react-dropzone'
 import { useMutation } from 'react-query'
+import getConfig from 'utils/config'
 import { storage } from 'utils/firebaseClient'
 import validations from 'utils/validations'
 
@@ -21,7 +22,10 @@ const FileUpload = () => {
   const { values, setFieldValue } = useFormikContext()
   const [progress, setProgress] = useState(null)
 
-  const onSelectFile = (files) => {
+  const onSelectFile = (files, rejected) => {
+    if (rejected.length > 0) {
+      return alert('Gunakan gambar bertipe PNG / JPG dan berukuran maksimum 1MB')
+    }
     const image = files[0]
     if (image) {
       const filename = `${new Date().getTime()}_${image.name}`
@@ -65,7 +69,7 @@ const FileUpload = () => {
 
   return (
     <section className="focus:outline-none mt-1 relative cursor-pointer">
-      <Dropzone onDrop={onSelectFile} multiple={false}>
+      <Dropzone onDrop={onSelectFile} multiple={false} maxSize={getConfig('MAX_FILE_SIZE')}>
         {({ getRootProps, getInputProps }) => (
           <div {...getRootProps()} className="focus:outline-none">
             <input {...getInputProps()} />
