@@ -14,6 +14,7 @@ import calculateDiscountPercentage from 'utils/calculateDiscountPercentage'
 import getConfig from 'utils/config'
 import { storage } from 'utils/firebaseClient'
 import validations from 'utils/validations'
+import Compressor from 'compressorjs'
 
 const FileUpload = () => {
   const { values, setFieldValue } = useFormikContext()
@@ -26,31 +27,37 @@ const FileUpload = () => {
     const image = files[0]
     if (image) {
       const filename = `${new Date().getTime()}_${image.name}`
-      const upload = storage.ref(`images/menu/${filename}`).put(image)
-      upload.on(
-        'state_changed',
-        (snapshot) => {
-          const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
-          if (progress == 100) {
-            setProgress(null)
-          } else {
-            setProgress(progress)
-          }
+      new Compressor(image, {
+        mimeType: 'image/jpeg',
+        quality: 0.8, // 0.6 can also be used, but its not recommended to go below.
+        success: (compressedResult) => {
+          const upload = storage.ref(`images/logo/${filename}`).put(compressedResult)
+          upload.on(
+            'state_changed',
+            (snapshot) => {
+              const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+              if (progress == 100) {
+                setProgress(null)
+              } else {
+                setProgress(progress)
+              }
+            },
+            (error) => {
+              console.log(error)
+              alert('Gagal menggunggah file')
+            },
+            () => {
+              storage
+                .ref('images/logo')
+                .child(filename)
+                .getDownloadURL()
+                .then((url) => {
+                  setFieldValue('logo', url)
+                })
+            }
+          )
         },
-        (error) => {
-          console.log(error)
-          alert('Gagal menggunggah file')
-        },
-        () => {
-          storage
-            .ref('images/menu')
-            .child(filename)
-            .getDownloadURL()
-            .then((url) => {
-              setFieldValue('image', url)
-            })
-        }
-      )
+      })
     }
   }
 
