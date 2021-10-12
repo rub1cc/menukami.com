@@ -52,7 +52,7 @@ const FileUpload = () => {
                 .child(filename)
                 .getDownloadURL()
                 .then((url) => {
-                  setFieldValue('logo', url)
+                  setFieldValue('image', url)
                 })
             }
           )
